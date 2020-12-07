@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_143201) do
   create_table "bars", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "category"
     t.string "address"
     t.float "latitude"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_12_07_143201) do
   create_table "bookings", force: :cascade do |t|
     t.datetime "date"
     t.integer "number_of_people"
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "user_id", null: false
     t.bigint "bar_id", null: false
     t.datetime "created_at", precision: 6, null: false
