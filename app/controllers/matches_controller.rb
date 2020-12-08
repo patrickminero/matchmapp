@@ -1,10 +1,10 @@
 class MatchesController < ApplicationController
   def index
-    @matches = Match.all
-    @match = Match.new
-  end
-
-  def show
+    if params[:query].present?
+      @matches = Match.global_search(params[:query])
+    else
+      @matches = Match.all
+    end
   end
 
 end
