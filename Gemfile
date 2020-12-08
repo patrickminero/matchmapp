@@ -24,6 +24,7 @@ gem 'redis', '~> 4.0'
 gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'geocoder'
+gem 'pg_search'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -63,3 +64,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "acts-as-taggable-on", "~> 6.5"

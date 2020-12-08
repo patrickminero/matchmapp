@@ -1,15 +1,15 @@
 class BarsController < ApplicationController
   def index
-    @bars = Bar.all
+    @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] })
   end
 
   def show
     @bar = Bar.find(params[:id])
     @review = Review.new
     @marker = {
-        lat: @bar.latitude,
-        lng: @bar.longitude
-      }
+      lat: @bar.latitude,
+      lng: @bar.longitude
+    }
   end
 
   def update

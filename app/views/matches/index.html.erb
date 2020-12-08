@@ -1,0 +1,32 @@
+<div class="container">
+  <h2> Upcoming Matches of Barcelona</h2>
+  <%= link_to "reset", matches_path %>
+    <%= form_tag matches_path, method: :get do %>
+      <% SPORT_CATEGORY.each do |sport| %>
+      <div class="tag-item">
+          <input type="checkbox" name="sports[]" id="<%= sport %>" value="<%= sport %>" class="tag-selector">
+          <label for="<%= sport %>"><%= sport %></label>
+      </div>
+      <% end  %>
+          <button type="submit"> Click </button>
+    <% end %>
+    <div>
+    
+      <% @matches.each do |match| %>  
+        <%= link_to match_bars_path(match) do %>
+          <div class="card-product w-75 m-3">
+            <div class="card-product-info px-3 w-100">
+              <p><%= match.home_team%> - <%= match.away_team  %></p>
+              <p class="w-100"><%= match.league %> <% match.date %></p>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-start flex-wrap align-items-end">
+                  <h6><span class="badge badge-secondary mr-1"><%= match.sports %></span></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
