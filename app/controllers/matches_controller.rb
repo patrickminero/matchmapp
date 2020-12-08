@@ -6,5 +6,4 @@ class MatchesController < ApplicationController
       @matches = Match.all
     end
   end
-
 end
