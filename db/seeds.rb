@@ -6,6 +6,19 @@ User.create!({
   email: "test@email.com",
   password: "123456"
 })
+
+5.times do
+  matches = Match.new(
+    home_team: Faker::Sports::Football.team,
+    away_team: Faker::Sports::Football.team,
+    league: Faker::Sports::Football.competition.upcase!,
+    sports: SPORT_CATEGORY.sample,
+    date: Time.now + 15000
+    )
+  puts "Finish seeding and created #{Match.count}"
+  matches.save!
+end
+
 5.times do
   bars = Bar.new(
     name: Faker::Artist.name,
@@ -28,17 +41,6 @@ User.create!({
       bars.photos.attach(io: photo, filename: 'buddy-avatar.png')
     end
     bars.save!
+    bars.matches.push(Match.all.sample)
     puts "Finish seeding and created #{User.count} user & #{Bar.count} bars"
   end
-
-5.times do
-  matches = Match.new(
-    home_team: Faker::Sports::Football.team,
-    away_team: Faker::Sports::Football.team,
-    league: Faker::Sports::Football.competition.upcase!,
-    sports: SPORT_CATEGORY.sample,
-    date: Time.now + 15000
-    )
-  puts "Finish seeding and created #{Match.count}"
-  matches.save!
-end

@@ -10,6 +10,8 @@ class Bar < ApplicationRecord
   has_many_attached :photos
 
   def rating
+    return 0 if self.reviews.empty?
+
     total = self.reviews.sum(:rating)
     total / self.reviews.count
   end
