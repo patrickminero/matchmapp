@@ -1,4 +1,6 @@
 class Bar < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
   has_many :screenings, dependent: :destroy
   has_many :matches, through: :screenings
   has_many :bookings, dependent: :destroy
@@ -6,4 +8,9 @@ class Bar < ApplicationRecord
   enum status: [:many_spaces, :few_spaces, :no_spaces]
   enum category: BAR_CATEGORIES
   has_many_attached :photos
+
+  def rating
+    total = self.reviews.sum(:rating)
+    total / self.reviews.count
+  end
 end

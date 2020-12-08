@@ -17,10 +17,10 @@ User.create!({
     latitude: Faker::Address.latitude,
     )
     photos = []
-    photo = URI.open('https://picsum.photos/200/300')
-    photo_1 = URI.open('https://picsum.photos/200/300')
-    photo_2 = URI.open('https://picsum.photos/200/300')
-
+    photo = URI.open('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80')
+    photo_1 = URI.open('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80')
+    photo_2 = URI.open('https://images.unsplash.com/photo-1575444758702-4a6b9222336e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80')
+    
     photos << photo
     photos << photo_1
     photos << photo_2
