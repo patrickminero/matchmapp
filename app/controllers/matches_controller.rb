@@ -1,10 +1,11 @@
 class MatchesController < ApplicationController
   def index
-    @matches = Match.all
-    @match = Match.new
+    if params[:query].present?
+      @matches = Match.global_search(params[:query])
+    elsif params[:sports].present?
+      @matches = Match.where(sports: params[:sports])
+    else
+      @matches = Match.all
+    end
   end
-
-  def show
-  end
-
 end

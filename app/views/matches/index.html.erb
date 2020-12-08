@@ -1,28 +1,40 @@
 <div class="container">
-  <h4 class="pt-2"><strong> Upcoming Matches of Barcelona</h4></strong
-    <%= form_with url: matches_path  do |form| %>
+  <h4 class="pt-2"><strong>Upcoming Matches of Barcelona</strong></h4>
+  <%= link_to "reset", matches_path %>
+    <%= form_tag matches_path, method: :get do %>
+
       <% SPORT_CATEGORY.each do |sport| %>
       <div class="tag-item">
-        <div class="tag-selector">
-          <%= form.label("sports[]", sport) %>
-          <%= form.radio_button( "sports[]", sport )  %>
-        </div>
-      <% end  %>
+          <input type="checkbox" name="sports[]" id="<%= sport %>" value="<%= sport %>" class="tag-selector">
+          <label for="<%= sport %>"><%= sport %></label>
       </div>
+      <% end  %>
+          <button type="submit"> Click </button>
     <% end %>
       <% @matches.each do |match| %>
         <div class="card-product w-80 m-3 card-match-info ">
           <div class="card-product-info px-1 w-100">
-            <p class="league-style col text-center"><strong><%= match.league %> </p></strong>
-            <p class="teams-style col text-center"><img src="https://i.imgur.com/zw66qlV.png" class="mr-1" width="25" height="25"><strong><%= match.home_team %> - <%= match.away_team %><img src="https://i.imgur.com/VQjPSV3.png" class="ml-1" width="25" height="25"></p></strong>
+            <p class="league-style col text-center"><strong><%= match.league %></strong></p>
+            <p class="teams-style col text-center">
+              <img src="https://i.imgur.com/zw66qlV.png" class="mr-1" width="25" height="25">
+              <strong>
+                <%= match.home_team %> - <%= match.away_team %>
+                <img src="https://i.imgur.com/VQjPSV3.png" class="ml-1" width="25" height="25">
+              </strong>
+            </p>
             <div class="d-flex justify-content-around">
-                 <p class="date-style mr-5"><%= match.date %></p>
-                  <div class="d-flex ml-4">
-                   <h6><span class="badge badge-primary ml-5"><%= match.sports %></span></h6>
-                 </div>
+              <p class="date-style mr-5">
+                <%= match.date %>
+              </p>
+              <div class="d-flex ml-4">
+               <h6>
+                 <span class="badge badge-primary ml-5"><%= match.sports %></span>
+                </h6>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
   </div>
+
