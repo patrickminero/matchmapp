@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_102248) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "league"
-    t.string "sports", default: [], array: true
+    t.string "sports"
   end
 
   create_table "messages", force: :cascade do |t|
