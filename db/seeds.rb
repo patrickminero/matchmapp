@@ -36,6 +36,8 @@ User.create!({
     home_team: Faker::Sports::Football.team,
     away_team: Faker::Sports::Football.team,
     league: Faker::Sports::Football.competition,
+    sports: SPORT_CATEGORY.sample
+    date: Time.now + 15000
     )
   puts "Finish seeding and created #{Match.count}"
   matches.save!

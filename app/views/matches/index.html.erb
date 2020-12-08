@@ -1,9 +1,30 @@
 <div class="container">
   <h2> Upcoming Matches of Barcelona</h2>
-    <%= simple_form_for(@buddy) do |f| %>
-    <%= f.input :tags, as: :check_boxes, collection: [SPORT_CATEGORY], input_html: { multiple: true } %>
-    <%= f.submit 'Filter', class: 'btn btn-flat' %>
-  <% end %>
-
-
-</div>
+    <%= form_with url: matches_path  do |form| %>
+      <% SPORT_CATEGORY.each do |sport| %>
+      <div class="tag-item">
+        <div class="tag-selector">
+          <%= form.label("sports[]", sport) %>
+          <%= form.radio_button( "sports[]", sport )  %>
+        </div>
+      <% end  %>
+      </div>
+    <% end %>
+    <div>
+      <% @matches.each do |match| %>
+        <div class="card-product w-75 m-3">
+          <div class="card-product-info px-3 w-100">
+            <p><%= match.home_team%> - <%= match.away_team  %></p>
+            <p class="w-100"><%= match.league %> <% match.date %></p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-start flex-wrap align-items-end">
+                <% match.sports.each do |sport| %>
+                  <h6><span class="badge badge-secondary mr-1"><%= sport %></span></h6>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
