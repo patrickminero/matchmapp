@@ -35,7 +35,7 @@ User.create!({
   matches = Match.new(
     home_team: Faker::Sports::Football.team,
     away_team: Faker::Sports::Football.team,
-    league: Faker::Sports::Football.competition,
+    league: Faker::Sports::Football.competition.upcase!,
     sports: SPORT_CATEGORY.sample,
     date: Time.now + 15000
     )

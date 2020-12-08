@@ -1,3 +1,24 @@
 // Import page-specific CSS files here.
 @import "home";
-@import "matches_index"
+@import "matches_index";
+  
+.card-match-info {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.league-style {
+  font-size: 8px;
+  opacity: 0.5;
+  padding-top: 10px;
+}
+
+.teams-style {
+  font-size: 14px;
+}
+
+.date-style {
+  font-size: 8px;
+  opacity: 0.5;
+}
