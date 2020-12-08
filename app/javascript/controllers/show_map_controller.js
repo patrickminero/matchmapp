@@ -8,12 +8,17 @@ export default class extends Controller {
 }
 
   initMapbox() {
-    mapboxgl.accessToken = this.mapTarget.dataset.mapboxApiKey;
-    this.map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v10'
-    });
-    this.addMarkers();
+    try {
+      mapboxgl.accessToken = this.mapTarget.dataset.mapboxApiKey;
+
+      this.map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v10'
+      });
+      this.addMarkers();
+    } catch (error) {
+      console.log(error)
+    }
   } 
 
   addMarkers() {

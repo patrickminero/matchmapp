@@ -6,17 +6,19 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <% @bars.each do |bar| %>
-        <div class="card-product my-2">
-          <%= cl_image_tag( bar.photos.first.key ) %>
-          <div class="card-product-infos">
-            <h2><%= bar.name  %></h2>
-            <p><%= bar.description  %></p>
-            <p><%= bar.status  %></p>
-            <span><%= bar.category  %></span>
-          </div>  
-        </div>
+        <%= link_to bar_path(bar) do %>
+          <div class="card-product my-2">
+            <%= cl_image_tag( bar.photos.first.key ) %>
+            <div class="card-product-infos">
+              <h2><%= bar.name  %></h2>
+              <p><%= bar.description  %></p>
+              <p><%= bar.status  %></p>
+              <span><%= bar.category  %></span>
+            </div>  
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
