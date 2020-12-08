@@ -1,0 +1,9 @@
+<div class="container">
+  <h2> Upcoming Matches of Barcelona</h2>
+    <%= simple_form_for(@buddy) do |f| %>
+    <%= f.input :tags, as: :check_boxes, collection: [SPORT_CATEGORY], input_html: { multiple: true } %>
+    <%= f.submit 'Filter', class: 'btn btn-flat' %>
+  <% end %>
+
+
+</div>

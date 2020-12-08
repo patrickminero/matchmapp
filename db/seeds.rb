@@ -20,7 +20,7 @@ User.create!({
     photo = URI.open('https://picsum.photos/200/300')
     photo_1 = URI.open('https://picsum.photos/200/300')
     photo_2 = URI.open('https://picsum.photos/200/300')
-    
+
     photos << photo
     photos << photo_1
     photos << photo_2
@@ -30,3 +30,13 @@ User.create!({
     bars.save!
     puts "Finish seeding and created #{User.count} user & #{Bar.count} bars"
   end
+
+5.times do
+  matches = Match.new(
+    home_team: Faker::Sports::Football.team,
+    away_team: Faker::Sports::Football.team,
+    league: Faker::Sports::Football.competition,
+    )
+  puts "Finish seeding and created #{Match.count}"
+  matches.save!
+end
