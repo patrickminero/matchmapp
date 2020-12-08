@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+   <div class="col-12 col-md-6">
+     <h3 class="pt-3"><strong>Your booking is confirmed!</strong></h3>
+     <h5 class="pt-2"><strong>Venue selected: </strong></h5>
+     <div class="card-product my-2 py-3">
+        <%= cl_image_tag( @bar.photos.first.key ) %>
+        <div class="card-product-infos">
+          <h2><%= @bar.name  %></h2>
+          <p><%= @bar.description  %></p>
+        </div>  
+      </div>
+      <h6><strong>Booked for:</strong> <%= pluralize @booking.number_of_people, "person" %></h6>
+      <h6><strong>Date:</strong> <%= @booking.date %> </h6>
+      <h5 class="pt-2"><strong>Your selected match: </strong></h5>
+      <div class="card-product w-80 mt-3 mb-3 card-match-info">
+        <div class="card-product-info px-1 w-100">
+          <div class="league-style col text-center">
+            <strong><%= @match.league %></strong>
+          </div>
+          <div class="teams-style col text-center">
+            <img src="https://i.imgur.com/zw66qlV.png" class="mr-1" width="25" height="25">
+            <strong>
+              <%= @match.home_team %> - <%= @match.away_team %>
+            </strong>
+            <img src="https://i.imgur.com/VQjPSV3.png" class="ml-1" width="25" height="25"> 
+          </div>
+          <div class="d-flex justify-content-around">
+            <p class="date-style mr-5">
+              <%= @match.date %>
+            </p>
+            <div class="d-flex ml-4">
+              <h6>
+                <span class="badge badge-primary ml-5"><%= @match.sports %></span>
+              </h6>
+            </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </div>
+</div>

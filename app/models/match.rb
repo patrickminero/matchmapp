@@ -1,6 +1,7 @@
 class Match < ApplicationRecord
   has_many :screenings, dependent: :destroy
   has_many :bars, through: :screenings
+  has_many :bookings
   # acts_as_taggable_on :sports
 
   include PgSearch::Model
