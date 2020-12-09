@@ -15,4 +15,8 @@ class Match < ApplicationRecord
     using: {
       tsearch: { prefix: true }
   }
+
+  def name
+    "#{self.home_team} vs #{self.away_team}"
+  end
 end

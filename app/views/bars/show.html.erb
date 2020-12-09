@@ -52,6 +52,8 @@
        <% end %>
     </div>
   </div>
+  <%= link_to "Access chatroom", chatroom_path(@screening.chatroom) %>
+  <br>
   <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-flat" %>
   <div data-controller="show-map" class="my-3" >
     <div id="map" data-target="show-map.map"
