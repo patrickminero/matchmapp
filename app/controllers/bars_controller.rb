@@ -1,6 +1,7 @@
 class BarsController < ApplicationController
   def index
     @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] })
+    session[:match_id] = params[:match_id]
   end
 
   def show
