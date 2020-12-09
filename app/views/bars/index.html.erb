@@ -1,8 +1,8 @@
 
 <div class="container" data-controller="map-toggler">
-  <%= link_to '< Go back', matches_path(session[:match_id]), class: 'btn btn-outline-primary mx-3' %>
+  <%= link_to '< Go back', matches_path(session[:match_id]), class: 'btn btn-outline-primary mt-2 mx-3' %>
   <div class="text-center mt-3">
-    <button data-action="click->map-toggler#toggle" class="btn btn-primary">View list</button>
+    <button data-action="click->map-toggler#toggle" class="btn btn-primary mb-2">View list</button>
   </div>
   
   <div class="row">
@@ -16,7 +16,7 @@
             <div class="card-product-infos">
               <h2><%= bar.name  %></h2>
               <p><%= bar.description  %></p>
-              <div class="bar-category"><%= bar.category %></div>
+              <div class="bar-category mt-4"><%= bar.category %></div>
                 <div class="bar-status"><%= bar.status %></div>
             </div>
           </div>
