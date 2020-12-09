@@ -1,1 +1,1 @@
-SPORT_CATEGORY=["Football","Basketball","Rugby","Baseball","Tennis"]
+SPORT_CATEGORY=["Soccer","Basketball","Rugby","Baseball","Tennis"]
