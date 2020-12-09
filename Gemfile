@@ -66,3 +66,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "acts-as-taggable-on", "~> 6.5"
+
+gem "httparty", "~> 0.18.1"
