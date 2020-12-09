@@ -1,13 +1,13 @@
 <div class="container">
-  <h1><%= @bar.name %></h1>
+  <h1 class="pt-2"><%= @bar.name %></h1>
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
-    
-    <div class="carousel-inner">
+
+    <div class="carousel-inner rounded">
       <div class="carousel-item active ml-100">
         <%= cl_image_tag @bar.photos.first.key, height: 300, width: 400, crop: :fill, class:"d-block w-300" %>
       </div>
@@ -30,11 +30,11 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-  <div class="d-flex justify-content-between pt-2">
-    <h5><%= @bar.description %></h5>
-    <h6 class="badge badge-secondary"><%= @bar.category %></h6>
+  <div class="pt-2">
+    <h5 class="pt-2"><%= @bar.description %></h5>
+    <p class="bar-category"><%= @bar.category %></p>
   </div>
-   <h6><%= @bar.address %></h6>
+   <h6 class="pt-2"><%= @bar.address %></h6>
    <p><% @bar.rating.times do %>☆<% end %></p>
   <div class="d-flex">
     <div class="form-simple" style="width:200px; height:40px;"  data-controller="status-change">
@@ -48,18 +48,18 @@
        <% elsif @bar.few_spaces? %>
          <span class="badge badge-warning p-2">Few spaces remaining</span>
        <% elsif @bar.no_spaces? %>
-         <span class="badge badge-danger p-2">No empty spaces available. Please check later.</span>
+         <span class="badge badge-danger p-2">No empty spaces available. <br> Please check later.</span>
        <% end %>
     </div>
   </div>
- 
+
 <div data-controller="show-map" class="my-3" >
   <div id="map" data-target="show-map.map"
      style="width: 100%; height: 200px;"
      data-marker="<%= @marker.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-</div> 
+</div>
 
   <h5><strong><%= pluralize @bar.reviews.size, "review" %></strong></h5>
 <div id="reviews">

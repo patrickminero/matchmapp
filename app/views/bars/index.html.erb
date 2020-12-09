@@ -14,9 +14,9 @@
             <div class="card-product-infos">
               <h2><%= bar.name  %></h2>
               <p><%= bar.description  %></p>
-              <p><%= bar.status  %></p>
-              <span><%= bar.category  %></span>
-            </div>  
+              <div class="bar-category"><%= bar.category %></div>
+                <div class="bar-status"><%= bar.status %></div>
+            </div>
           </div>
         <% end %>
       <% end %>

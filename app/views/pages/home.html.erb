@@ -1,5 +1,7 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1560609429-3e8703c59c67?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80);">
   <div class="container">
+    <h1>MatchMapp</h1>
+    <h2>Be there by kickoff!</h2>
     <form novalidate="novalidate" class="simple_form search w-100" action="/matches" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
       <div class="search-form-control form-group">
         <input class="form-control string required" type="text" name="query" id="search_query" placeholder="Search by teams / game / bar"/>
@@ -10,7 +12,7 @@
 </div>
 
  <div class="container">
-  <h4 class="pt-4"><strong>Upcoming matches</h4></strong>
+  <h4 class="pt-4 pl-3"><strong>Upcoming matches</h4></strong>
       <% @matches.each do |match| %>
         <div class="card-product w-80 m-3 card-match-info ">
           <div class="card-product-info px-1 w-100">
