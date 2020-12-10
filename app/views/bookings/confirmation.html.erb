@@ -1,17 +1,36 @@
 <div class="container">
   <div class="row">
    <div class="col-12 col-md-6">
-     <h3 class="pt-3"><strong>Your booking is confirmed!</strong></h3>
+     <h3 class="my-5"><strong>Your booking is confirmed!</strong></h3>
      <h5 class="pt-2"><strong>Venue selected: </strong></h5>
-     <div class="card-product my-2 py-3">
+     <div class="bar-card my-4">
         <%= cl_image_tag( @bar.photos.first.key ) %>
-        <div class="card-product-infos">
-          <h2><%= @bar.name  %></h2>
-          <p><%= @bar.description  %></p>
-        </div>  
+        <div class="bar-card-infos">
+          <h2 class="mt-2"><%= @bar.name  %></h2>
+          <p>0.2 km away</p>
+          <div>
+            <% if @bar.rating == 0 %>
+              <p>Not rated yet</p>
+            <% else %>
+              <p class="my-1"><% @bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+            <% end %>
+          </div>
+          <div>
+            <% if @bar.many_spaces? %>
+              <p><i class="fas fa-check-circle text-success"></i> Many spaces available</p>
+            <% elsif @bar.few_spaces? %>
+              <p><i class="fas fa-exclamation-circle text-warning"></i> Few spaces available</p>
+            <% elsif @bar.no_spaces? %>
+              <p class="font-weight-bold"><i class="fas fa-ban text-danger"></i> No spaces available</p>
+            <% end %>
+          </div>
+          <div class="bar-category my-2">
+            <%= @bar.category %>
+          </div>
+        </div>
       </div>
-      <h6><strong>Booked for:</strong> <%= pluralize @booking.number_of_people, "person" %></h6>
-      <h6><strong>Date:</strong> <%= @booking.date %> </h6>
+      <h5><strong>Booked for:</strong> <%= pluralize @booking.number_of_people, "person" %></h5>
+      <h5><strong>Date:</strong> <%= @booking.date.strftime("%a %b %e at %l:%M%p") %> </h>
       <h5 class="pt-2"><strong>Your selected match: </strong></h5>
       <div class="card-product w-80 mt-3 mb-3 card-match-info">
         <div class="card-product-info px-1 w-100">
