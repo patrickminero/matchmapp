@@ -4,6 +4,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @bar = Bar.find(params[:bar_id])
     @match = Match.find(session[:match_id])
+    @user = current_user
   end
 
   def create

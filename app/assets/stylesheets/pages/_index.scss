@@ -45,7 +45,7 @@
 }
 
 .bar-status {
-    cursor: pointer;
+  cursor: pointer;
   display: inline-block;
   font-size: 0.7rem;
   border-radius: 2px;
@@ -55,4 +55,11 @@
   border: 1px solid #D73A49;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
+}
+
+#toggleButton{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 20px;
 }
