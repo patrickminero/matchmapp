@@ -4,7 +4,8 @@ Bar.destroy_all
 User.destroy_all
 User.create!({
   email: "test@email.com",
-  password: "123456"
+  password: "123456",
+  name: "Andrea R"
 })
 
 5.times do |i|
