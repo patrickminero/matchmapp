@@ -1,7 +1,7 @@
 class Screening < ApplicationRecord
   belongs_to :match
   belongs_to :bar
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
   after_create :assign_chatroom
 
   private
