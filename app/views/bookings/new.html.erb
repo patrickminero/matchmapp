@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+   <div class="col-12 col-md-6">
+     <h3 class="pt-3 font-weight-bold my-5">Hi <%= @user.email %>! Book a table</h3>
+     <div class="bar-card my-2">
+        <%= cl_image_tag( @bar.photos.first.key ) %>
+        <div class="bar-card-infos">
+          <h2 class="mt-2"><%= @bar.name  %></h2>
+          <p>0.2 km away</p>
+          <div>
+            <% if @bar.rating == 0 %>
+              <p>Not rated yet</p>
+            <% else %>
+              <p class="my-1"><% @bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+            <% end %>
+          </div>
+          <div>
+            <% if @bar.many_spaces? %>
+              <p><i class="fas fa-check-circle text-success"></i> Many spaces available</p>
+            <% elsif @bar.few_spaces? %>
+              <p><i class="fas fa-exclamation-circle text-warning"></i> Few spaces available</p>
+            <% elsif @bar.no_spaces? %>
+              <p class="font-weight-bold"><i class="fas fa-ban text-danger"></i> No spaces available</p>
+            <% end %>
+          </div>
+          <div class="bar-category my-2">
+            <%= @bar.category %>
+          </div>
+        </div>
+      </div>
+      <%= simple_form_for [@bar, @booking] do |b| %>
+        <%= b.input :date, as: :date %>
+        <%= b.input :time, as: :time %>
+        <%= b.input :number_of_people, collection: 1..5 %>
+        <%= render "matches/match_card", match: @match %>
+        <%= b.submit 'Confirm Booking', class:"btn btn-flat w-100"%> 
+      <% end %>
+      
+    </div>
+   </div>
+  </div>
+</div>

@@ -1,8 +1,12 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "matches_index";
+<<<<<<< HEAD
 @import "profile_show";
   
+=======
+
+>>>>>>> master
 .card-match-info {
   overflow: hidden;
   background: white;
@@ -10,16 +14,56 @@
 }
 
 .league-style {
-  font-size: 8px;
-  opacity: 0.5;
-  padding-top: 10px;
+  font-size: 10px;
+  opacity: 0.4;
 }
 
 .teams-style {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .date-style {
-  font-size: 8px;
-  opacity: 0.5;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.filter-button {
+  font-size: 13px;
+  color: #D73A49;
+  border-radius: 3px;
+  border-color: #D73A49;
+  background-color: white;
+}
+
+.bar-category {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 2px;
+  padding: 0.1rem 0.5rem;
+  background-color: #D73A49;
+  color: white;
+  border: 1px solid #D73A49;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.bar-status {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 2px;
+  padding: 0.1rem 0.5rem;
+  background-color: #D73A49;
+  color: white;
+  border: 1px solid #D73A49;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+#toggleButton{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 20px;
 }

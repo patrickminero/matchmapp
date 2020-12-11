@@ -1,6 +1,8 @@
 class Match < ApplicationRecord
   has_many :screenings, dependent: :destroy
   has_many :bars, through: :screenings
+  validates :unique_event_id, uniqueness: true
+  has_many :bookings
   # acts_as_taggable_on :sports
 
   include PgSearch::Model
@@ -13,4 +15,8 @@ class Match < ApplicationRecord
     using: {
       tsearch: { prefix: true }
   }
+
+  def name
+    "#{self.home_team} vs #{self.away_team}"
+  end
 end

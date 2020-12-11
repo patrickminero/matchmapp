@@ -33,7 +33,7 @@ gem 'pg_search'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-
+gem 'rails_admin', '~> 2.0'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
@@ -66,3 +66,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "acts-as-taggable-on", "~> 6.5"
+
+gem "httparty", "~> 0.18.1"

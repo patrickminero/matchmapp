@@ -1,23 +1,20 @@
-<div class="container">
-  <h1><%= @bar.name %></h1>
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    
-    <div class="carousel-inner">
-      <div class="carousel-item active ml-100">
-        <%= cl_image_tag @bar.photos.first.key, height: 300, width: 400, crop: :fill, class:"d-block w-300" %>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner rounded">
+    <div class="carousel-item active ml-100">
+      <%= cl_image_tag @bar.photos.first.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
+    </div>
+    <% if @bar.photos.second %>
+      <div class="carousel-item">
+        <%= cl_image_tag @bar.photos.second.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
       </div>
-      <% if @bar.photos.second %>
-        <div class="carousel-item">
-          <%= cl_image_tag @bar.photos.second.key, height: 300, width: 400, crop: :fill, class:"d-block w-300" %>
-        </div>
         <% elsif @bar.photos.third %>
           <div class="carousel-item">
-            <%= cl_image_tag @bar.photos.third.key, height: 300, width: 400, crop: :fill, class:"d-block w-300" %>
+            <%= cl_image_tag @bar.photos.third.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
           </div>
         <% end %>
     </div>
@@ -30,46 +27,66 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-  <div class="d-flex justify-content-between pt-2">
-    <h5><%= @bar.description %></h5>
-    <h6 class="badge badge-secondary"><%= @bar.category %></h6>
-  </div>
-   <h6><%= @bar.address %></h6>
-   <p><% @bar.rating.times do %>☆<% end %></p>
-  <div class="d-flex">
-    <div class="form-simple" style="width:200px; height:40px;"  data-controller="status-change">
-      <%= simple_form_for @bar, remote: true, data: {target: "status-change.form"}, method: :patch, authenticity_token: true do |b| %>
-        <%= b.input :status, collection: [["Many spaces available", :many_spaces ], [ "Few spaces remaining", :few_spaces], ["No spaces left", :no_spaces]], label: 'Please update status', input_html: { data: { action: "change->status-change#newstatus" } }, include_blank: false %>
-      <% end %>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <div class="pt-3">
+      <h3 class="pt-1" style="font-size:25px;"><strong><%= @bar.name %></strong></h3>
     </div>
-    <div class="bar p-3 mt-4" data-target="status-change.newstatus">
+    <div class="bar pt-3" data-target="status-change.newstatus">
        <% if @bar.many_spaces? %>
-         <span class="badge badge-success p-2">Many spaces available</span>
+         <div><i class="fas fa-check-circle text-success pt-2" style="font-size:25px;"></i></div>
        <% elsif @bar.few_spaces? %>
-         <span class="badge badge-warning p-2">Few spaces remaining</span>
+         <div><i class="fas fa-exclamation-circle text-warning pt-2" style="font-size:25px;"></i></div>
        <% elsif @bar.no_spaces? %>
-         <span class="badge badge-danger p-2">No empty spaces available. Please check later.</span>
+         <div><i class="fas fa-ban text-danger pt-2" style="font-size:25px;"></i></div>
        <% end %>
     </div>
+    <div class="form-simple pt-3" style="width:100px; height:40px;"  data-controller="status-change">
+      <%= simple_form_for @bar, remote: true, data: {target: "status-change.form"}, method: :patch, authenticity_token: true do |b| %>
+        <%= b.input :status, collection: [["Many spaces available", :many_spaces ], [ "Few spaces remaining", :few_spaces], ["No spaces left", :no_spaces]],
+        label: false, input_html: { data: { action: "change->status-change#newstatus" } }, include_blank: false %>
+      <% end %>
+    </div>
   </div>
- 
-<div data-controller="show-map" class="my-3" >
-  <div id="map" data-target="show-map.map"
-     style="width: 100%; height: 200px;"
-     data-marker="<%= @marker.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    <div class="d-flex my-0">
+      <div>
+        <% if @bar.rating == 0 %>
+          <p>Not rated yet</p>
+        <% else %>
+          <p><% @bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+        <% end %>
+      </div>
+      <div>
+       <p class="mb-0 ml-2"><%= pluralize @bar.reviews.size, "review" %></p>
+      </div>
+    </div>
+     <p class="bar-category"><%= @bar.category %></p>
+    <p class="pt-2"><%= @bar.description %></p>
+    <%= link_to "Access chatroom", chatroom_path(@screening.chatroom), class:"btn btn-primary rounded mb-2 col text-center"  %>
+    <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-outline-primary rounded mt-2 col text-center"%>
+   <p class="pt-2 mt-2 location-style"><%= @bar.address %></p>
+  <div data-controller="show-map" class="mt-3 mb-3" >
+    <div id="map" data-target="show-map.map"
+      style="width: 100%; height: 200px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
-</div> 
-
-  <h5><strong><%= pluralize @bar.reviews.size, "review" %></strong></h5>
 <div id="reviews">
   <% if @bar.reviews.blank? %>
     Be the first to leave a review for <%= @bar.name %>
   <% else %>
     <% @bar.reviews.each do |review| %>
-    <div class="card bg-light text-dark mb-2 w-75 pl-2">
-      <p class="pb-0 mb-1 rounded"><% review.rating.times do %>☆<% end %></p>
-      <p><%= review.content %></p>
+      <div class="card bg-light text-dark mb-2 pl-2 py-2 w-100 rounded">
+        <p class="mb-0"><strong><%= review.content %></strong></p>
+        <div class="d-flex justify-content-between align-items-end">
+          <div>
+            <p class="mb-1 rounded"><% review.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+          </div>
+          <div>
+            <p class="mr-2 mb-0">- <%= review.user.name %></p>
+          </div>
+        </div>
       </div>
     <% end %>
   <% end %>

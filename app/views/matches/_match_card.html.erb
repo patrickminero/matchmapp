@@ -1,0 +1,12 @@
+<div class="card-product w-80 m-3 p-2 card-match-info ">
+  <div class="card-product-info px-1 w-100">
+    <p class="league-style col text-center"><strong><%= match.league %></p></strong>
+    <p class="teams-style col text-center"><img src="<%= match.home_team_logo %>" class="mr-2" width="30" height="30"><strong><%= match.home_team %> - <%= match.away_team %><img src="<%= match.away_team_logo %>" class="ml-2" width="30" height="30"></p></strong>
+    <div class="d-flex justify-content-between align-items-end">
+          <p class="date-style"><%= match.date.strftime("%A %B %y, %H:%M") %></p>
+          <div class="d-flex ml-4">
+            <span class="badge badge-primary mt-3 ml-3"><%= match.sports %></span>
+          </div>
+    </div>
+  </div>
+</div>
