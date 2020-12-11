@@ -3,15 +3,21 @@ class BarsController < ApplicationController
     @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] })
     session[:match_id] = params[:match_id]
     @match = Match.find(params[:match_id])
+    @markers = @bars.geocoded.map do |bar|
+      {
+        lat: bar.latitude,
+        lng: bar.longitude
+      }
+    end
   end
 
   def show
     @bar = Bar.find(params[:id])
     @review = Review.new
-    @marker = {
+    @markers = [{
       lat: @bar.latitude,
       lng: @bar.longitude
-    }
+    }]
     @screening = Screening.find_by(match_id: session[:match_id], bar_id: params[:id])
   end
 
