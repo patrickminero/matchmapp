@@ -30,11 +30,9 @@
       </div>
       <%= simple_form_for [@bar, @booking] do |b| %>
         <%= b.input :date, as: :date %>
-        <%= b.input :date, as: :time, label: 'Time'%>
+        <%= b.input :time, as: :time %>
         <%= b.input :number_of_people, collection: 1..5 %>
-
-         <%= render "matches/match_card", match: @match %>
-
+        <%= render "matches/match_card", match: @match %>
         <%= b.submit 'Confirm Booking', class:"btn btn-flat w-100"%> 
       <% end %>
       
