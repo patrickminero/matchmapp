@@ -1,0 +1,15 @@
+<div class="banner_profile" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.thesportsdb.com/images/media/team/fanart/xyusxr1419347566.jpg);">
+<img class="avatar-large" alt="avatar-large" src="https://avatars0.githubusercontent.com/u/72385340?s=400&u=b3828461dfca01ff1f319093f51504577b0ac5da&v=4" />
+</div>
+<div class="container_profile">
+  <div class="d-flex justify-content-center mt-4">
+    <%= link_to "Profile", nil, class: "button_profile border active"%>
+    <%= link_to "Bookings ", nil, class: "button_bookings border"%>
+  </div>
+  <div class="card border py-5 px-3">
+    <p>My profile name <strong><%= @profile.name %></strong></p>
+    <p>My favourite team <strong><%= @profile.favourite_team %></strong></p>
+    <p>My favourite sport <strong><%= @profile.favourite_sport %></strong></p>
+  </div>
+</div>
+  <%= link_to "Edit", edit_profile_path(@profile)%>
