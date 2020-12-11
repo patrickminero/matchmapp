@@ -1,7 +1,7 @@
 class BarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
-    @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] }).near([session[:latitude], session[:longitude]], 10)
+    @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] }).near([session[:latitude], session[:longitude]], 30)
 
     session[:match_id] = params[:match_id]
     @match = Match.find(params[:match_id])
