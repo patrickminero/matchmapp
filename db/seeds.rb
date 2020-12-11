@@ -23,7 +23,6 @@ User.create!({
   name: "Adrian D"
 })
 
-
 Bar.create(
   name: "Flaherty´s Irish Pub",
   description: "Lip-smacking pub grub and a range of alcohol make Flaherty’s a close second to being in the stadium.",
@@ -89,7 +88,7 @@ Bar.create(
   URI.open('https://i.pinimg.com/564x/26/52/a1/2652a1e8edc4ce8a6674d8f0646e34d6.jpg'),
   URI.open('https://i.pinimg.com/564x/0c/65/8f/0c658f019ff7decaad91ec016924675c.jpg')]
 
-    
+
   Bar.all.each_with_index do |bar, index|
     start = index == 0 ? index : index * 3
     finish = start + 2

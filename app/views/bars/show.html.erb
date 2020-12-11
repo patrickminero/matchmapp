@@ -34,16 +34,16 @@
     </div>
     <div class="bar pt-3" data-target="status-change.newstatus">
        <% if @bar.many_spaces? %>
-         <div><i class="fas fa-check-circle text-success" style="font-size:35px;"></i></div>
+         <div><i class="fas fa-check-circle text-success pt-2" style="font-size:25px;"></i></div>
        <% elsif @bar.few_spaces? %>
-         <div><i class="fas fa-exclamation-circle text-warning" style="font-size:35px;"></i></div>
+         <div><i class="fas fa-exclamation-circle text-warning pt-2" style="font-size:25px;"></i></div>
        <% elsif @bar.no_spaces? %>
-         <div><i class="fas fa-ban text-danger" style="font-size:35px;"></i></div>
+         <div><i class="fas fa-ban text-danger pt-2" style="font-size:25px;"></i></div>
        <% end %>
     </div>
     <div class="form-simple pt-3" style="width:100px; height:40px;"  data-controller="status-change">
       <%= simple_form_for @bar, remote: true, data: {target: "status-change.form"}, method: :patch, authenticity_token: true do |b| %>
-        <%= b.input :status, collection: [["Many spaces available", :many_spaces ], [ "Few spaces remaining", :few_spaces], ["No spaces left", :no_spaces]], 
+        <%= b.input :status, collection: [["Many spaces available", :many_spaces ], [ "Few spaces remaining", :few_spaces], ["No spaces left", :no_spaces]],
         label: false, input_html: { data: { action: "change->status-change#newstatus" } }, include_blank: false %>
       <% end %>
     </div>
@@ -71,7 +71,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  </div> 
+  </div>
 <div id="reviews">
   <% if @bar.reviews.blank? %>
     Be the first to leave a review for <%= @bar.name %>

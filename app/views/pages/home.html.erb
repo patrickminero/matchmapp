@@ -14,6 +14,8 @@
  <div class="container">
   <h4 class="pt-4 pl-3"><strong>Upcoming matches</h4></strong>
       <% @matches.each do |match| %>
-        <%= render "matches/match_card", match: match %>
+        <%= link_to match_bars_path(match) do %>
+          <%= render "matches/match_card", match: match %>
+        <% end %>
       <% end %>
     </div>
