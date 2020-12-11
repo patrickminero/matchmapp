@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 2020_12_11_110108) do
     t.string "league"
     t.string "sports"
     t.string "unique_event_id"
+    t.string "home_team_logo"
+    t.string "away_team_logo"
   end
 
   create_table "messages", force: :cascade do |t|

@@ -2,26 +2,28 @@ require 'faker'
 require 'open-uri'
 Bar.destroy_all
 User.destroy_all
+Match.destroy_all
+
+LatestGamesJob.perform_now
+
 User.create!({
-  email: "test@email.com",
+  email: "andrea@email.com",
   password: "123456",
-  name: "Andrea R"
+  name: "Andrea R",
+  admin: true
+})
+User.create!({
+  email: "patrick@email.com",
+  password: "123456",
+  name: "Patrick M"
+})
+User.create!({
+  email: "adrian@email.com",
+  password: "123456",
+  name: "Adrian D"
 })
 
-# 5.times do |i|
-#   matches = Match.new(
-#     unique_event_id: i,
-#     home_team: Faker::Sports::Football.team,
-#     away_team: Faker::Sports::Football.team,
-#     league: Faker::Sports::Football.competition.upcase!,
-#     sports: SPORT_CATEGORY.sample,
-#     date: Time.now
-#     )
-#   puts "Finish seeding and created #{Match.count}"
-#   matches.save!
-# end
-
-first_bar = Bar.create(
+Bar.create(
   name: "Flaherty´s Irish Pub",
   description: "Lip-smacking pub grub and a range of alcohol make Flaherty’s a close second to being in the stadium.",
   status: :many_spaces,
@@ -31,7 +33,7 @@ first_bar = Bar.create(
   longitude: 2.176786126104934
 )
 
-second_bar = Bar.create(
+Bar.create(
   name: "Belushi's Barcelona",
   description: "Informal chain bar with TV sport and live entertainment",
   status: :many_spaces,
@@ -41,7 +43,7 @@ second_bar = Bar.create(
   longitude: 2.1676741684331424
 )
 
-third_bar = Bar.create(
+Bar.create(
   name:"The Wild Rover",
   description: "We are a premium Barcelona Sports Bar. We show all sports live on our two of the biggest HD screens and on six other TV’s",
   status: :many_spaces,
@@ -50,8 +52,7 @@ third_bar = Bar.create(
   latitude: 41.37772324519451,
   longitude: 2.1753559107606577
 )
-
-fourth_bar = Bar.create(
+Bar.create(
   name: 'CocoVail Beer Hall',
   description:"Over 20 craft beers on tap, multiple TV sets with Red Zone and some great wings.",
   status: :many_spaces,
@@ -61,7 +62,7 @@ fourth_bar = Bar.create(
   longitude: 2.165815712613711
 )
 
-fifth_bar = Bar.create(
+Bar.create(
   name:'Obama English Pub',
   description: 'We broadcast all the La Liga football matches along with other games from other european competitions.',
   status: :many_spaces,
@@ -73,7 +74,7 @@ fifth_bar = Bar.create(
 
   photos = [URI.open('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'),
   URI.open('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80'),
-  URI.open('https://images.unsplash.com/photo-1575444758702-4a6b9222336e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'),
+  URI.open('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80'),
   URI.open('https://i.pinimg.com/564x/f9/5b/84/f95b84d28f8add4e0bd8598fbdd37b7b.jpg'),
   URI.open('https://i.pinimg.com/564x/66/e5/93/66e593ee6dc9908923e56774077641ce.jpg'),
   URI.open('https://i.pinimg.com/564x/e1/41/e2/e141e27b471274e066934b7ba865e82c.jpg'),
@@ -89,8 +90,20 @@ fifth_bar = Bar.create(
 
 
   Bar.all.each_with_index do |bar, index|
-    bar.photos.attach(io: photos[index], filename: 'buddy-avatar.png')
-    bar.matches.push(Match.all.sample)
+    start = index == 0 ? index : index * 3
+    finish = start + 2
+
+    photos[start..finish].each do |photo|
+      bar.photos.attach(io: photo, filename: 'buddy-avatar.png')
+    end    
+  end
+
+  bars = Bar.all
+
+  Match.all.each do |match|
+    3.times do
+      match.bars.push(bars.where.not(id: match.bars.pluck(:id)).sample)
+    end
   end
 
   puts "Finish seeding and created #{User.count} user & #{Bar.count} bars"
