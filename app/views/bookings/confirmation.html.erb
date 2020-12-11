@@ -30,7 +30,7 @@
         </div>
       </div>
       <h5><strong>Booked for:</strong> <%= pluralize @booking.number_of_people, "person" %></h5>
-      <h5><strong>Date:</strong> <%= @booking.date.strftime("%a %b %e at %l:%M%p") %> </h>
+      <h5><strong>Date:</strong> <%= @booking.date.strftime("%d %b %Y") %> at <%= @booking.time.strftime("%-l:%M %p") %> </h5>
       <h5 class="pt-2"><strong>Your selected match: </strong></h5>
       <div class="card-product w-80 mt-3 mb-3 card-match-info">
         <div class="card-product-info px-1 w-100">
