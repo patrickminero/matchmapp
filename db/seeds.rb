@@ -8,18 +8,18 @@ User.create!({
   name: "Andrea R"
 })
 
-5.times do |i|
-  matches = Match.new(
-    unique_event_id: i,
-    home_team: Faker::Sports::Football.team,
-    away_team: Faker::Sports::Football.team,
-    league: Faker::Sports::Football.competition.upcase!,
-    sports: SPORT_CATEGORY.sample,
-    date: Time.now
-    )
-  puts "Finish seeding and created #{Match.count}"
-  matches.save!
-end
+# 5.times do |i|
+#   matches = Match.new(
+#     unique_event_id: i,
+#     home_team: Faker::Sports::Football.team,
+#     away_team: Faker::Sports::Football.team,
+#     league: Faker::Sports::Football.competition.upcase!,
+#     sports: SPORT_CATEGORY.sample,
+#     date: Time.now
+#     )
+#   puts "Finish seeding and created #{Match.count}"
+#   matches.save!
+# end
 
 first_bar = Bar.create(
   name: "Flaherty´s Irish Pub",
@@ -87,7 +87,7 @@ fifth_bar = Bar.create(
   URI.open('https://i.pinimg.com/564x/26/52/a1/2652a1e8edc4ce8a6674d8f0646e34d6.jpg'),
   URI.open('https://i.pinimg.com/564x/0c/65/8f/0c658f019ff7decaad91ec016924675c.jpg')]
 
-    
+
   Bar.all.each_with_index do |bar, index|
     bar.photos.attach(io: photos[index], filename: 'buddy-avatar.png')
     bar.matches.push(Match.all.sample)
