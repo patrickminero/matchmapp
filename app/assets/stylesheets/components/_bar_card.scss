@@ -6,6 +6,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  border: 1.5px solid white;
 }
 
 .bar-card img {
@@ -15,7 +16,7 @@
 }
 
 .bar-card h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
 }
@@ -29,4 +30,5 @@
 
 .bar-card .bar-card-infos {
   padding: 16px;
+  color:black;
 }
