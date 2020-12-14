@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://i.imgur.com/TroN2YL.jpg);">
   <div class="row">
+
   <% if params[:location].present? %>
       <h4 class="pt-2 pl-4"><strong>Upcoming Matches in <%= params[:location] %></strong></h4>
     <% elsif params[:latitude].present? && params[:longitude].present? %>
@@ -8,7 +9,7 @@
     <% end %>
     <div class="col-12">
       <%= form_tag matches_path, method: :get do %>
-        <div class="mx-3 d-flex justify-content-between pt-2">
+        <div class="pb-2 d-flex justify-content-between pt-2">
           <% SPORT_CATEGORY.each do |sport| %>
             <div class="tag-item">
                 <input type="checkbox" name="sports[]" id="<%= sport %>" value="<%= sport %>" class="tag-selector">
@@ -17,8 +18,8 @@
           <% end  %>
         </div>
         <div class="text-right mx-3 pt-2">
-          <button class="btn btn-outline-primary bg-white px-2 py-0" type="Submit"> Filter </button>
-          <%= link_to "Reset", matches_path, class: "btn btn-outline-primary bg-white px-2 py-0" %>
+          <button class="btn btn-outline-primary filter-button px-2 py-0" type="Submit"> Filter </button>
+          <%= link_to "Reset", matches_path, class: "btn btn-outline-primary filter-button px-2 py-0" %>
         </div>
       <% end %>
     </div>
