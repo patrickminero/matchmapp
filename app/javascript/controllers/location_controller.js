@@ -3,7 +3,7 @@ import { Controller } from "stimulus"
 export default class extends Controller {
   // instead of document.querySelector(....)
   // this.latitudeInputTarget
-  static targets = ['latitudeInput', 'longitudeInput', 'location']
+  static targets = ['latitudeInput', 'longitudeInput', 'location', 'form']
 
   connect() {
     try {
