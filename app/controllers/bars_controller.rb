@@ -5,7 +5,6 @@ class BarsController < ApplicationController
 
     session[:match_id] = params[:match_id]
     @match = Match.find(params[:match_id])
-    
     @markers = @bars.geocoded.map do |bar|
       {
         lat: bar.latitude,
