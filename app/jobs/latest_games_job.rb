@@ -14,10 +14,10 @@ class LatestGamesJob < ApplicationJob
       matches = response[:events].map do |match|
         date = "#{match[:dateEvent]}T#{match[:strTime] == "00:00:00" ? '20:00:00' : match[:strTime]}"
         { unique_event_id: match[:idEvent],
-          home_team: match[:strHomeTeam], 
-          away_team: match[:strAwayTeam], 
-          date: date.to_datetime, 
-          league: match[:strLeague], 
+          home_team: match[:strHomeTeam],
+          away_team: match[:strAwayTeam],
+          date: date.to_datetime,
+          league: match[:strLeague],
           sports: match[:strSport],
           home_team_logo: get_team_logo(match[:strHomeTeam]),
           away_team_logo:  get_team_logo(match[:strAwayTeam]) }
