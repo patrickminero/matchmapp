@@ -40,14 +40,17 @@ response["businesses"].each do |b|
       description: Faker::Restaurant.description,
       status: :many_spaces,
       category: categories.select { |c| BAR_CATEGORIES.include?(c) }[0],
-      address: "#{b["location"]["display_address"][0]},#{b["location"]["display_address"][1]},#{b["location"]["display_address"][2]}"
+      address: "#{b["location"]["display_address"][0]},#{b["location"]["display_address"][1]},#{b["location"]["display_address"][2]}",
+      green_votes: 0,
+      yellow_votes: 0,
+      red_votes: 0,
     )
 
     photos = URI.open(b["image_url"])
     bar.photos.attach(io: photos, filename: 'bar-photo.png')
-    puts "Finished creating #{Bar.count} bars."
   end
 end
+puts "Finished creating #{Bar.count} bars."
 
   bars = Bar.all
 

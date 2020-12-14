@@ -30,7 +30,16 @@ class BarsController < ApplicationController
     redirect_to bar_path(@bar)
   end
 
+  def color_vote
+    @bar = Bar.find(params[:id])
+    color = params[:color]
+    @bar.color_vote(color)
+    redirect_to bar_path(@bar)
+  end
+
   private
+
+ 
 
   def bar_params
     params.require(:bar).permit(:status)
