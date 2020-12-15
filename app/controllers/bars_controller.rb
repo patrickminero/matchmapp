@@ -31,7 +31,20 @@ class BarsController < ApplicationController
     redirect_to bar_path(@bar)
   end
 
+  def color_vote
+    @bar = Bar.find(params[:id])
+    color = params[:color]
+    @bar.color_vote(color)
+    
+    respond_to do |format|
+      format.html { redirect_to bar_path(@bar) }
+      format.json { render json: @bar }
+     end
+  end
+
   private
+
+ 
 
   def bar_params
     params.require(:bar).permit(:status)

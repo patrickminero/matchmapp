@@ -8,10 +8,15 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'mapbox-gl/dist/mapbox-gl';
+@import 'select2/dist/css/select2';
+@import '@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4';
+
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/show";
+@import "pages/confirmation";
 
 a {
   color:black;

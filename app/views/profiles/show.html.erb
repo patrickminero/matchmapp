@@ -1,0 +1,62 @@
+<div class="banner">
+<div class="banner_profile" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @profile.get_background %>);"> 
+<%= cl_image_tag @profile.photo_url , {class: "avatar-large", alt: "avatar-large"} %>
+</div>  
+<div class="container_profile" data-controller="profile">
+  <div class="d-flex justify-content-center mt-4">
+    <button class="button_profile border active_tab" data-profile-target="profileButton" data-action="click->profile#showProfile">Profile</button> 
+    <button class="button_bookings border" data-profile-target="bookingButton" data-action="click->profile#showBooking" >My Bookings</button> 
+  </div>
+  <div class="card border py-5 px-3" data-profile-target="profile">
+    <% if @profile.name.nil? %>
+      <p class="text-center text-dark"><i class="fas fa-running"></i> Welcome to your profile page</p>
+    <% else %>
+      <p class="text-center"><i class="fas fa-running"></i> Welcome <strong><%= @profile.name.capitalize %></strong> to your profile page</p>
+      <p class="text-center"><i class="fas fa-heart"></i>We heard your favourite team is <strong><%= @profile.favourite_team %></strong></p>
+      <p class="text-center"><i class="fas fa-medal"></i><strong><%= @profile.favourite_sport %></strong></p>
+    <% end %>
+  </div>
+  <div class="card border py-5 px-3 d-none" data-profile-target="booking">
+    <% if @profile.bookings.empty? %>
+      <p class="text-center">You don't have any upcomming booking</p>
+      <%= link_to  matches_path do%>
+      <p class="text-center">See our  <i class="fas fa-medal"></i>  Upcomming Events  <i class="far fa-futbol"></i></p>
+      <% end %>
+    <% else %>
+      <div class="col-12 col-md-6" data-map-toggler-target="barView">
+        <% @bookings.each do |booking| %>
+          <%= link_to confirmation_path(booking) do %> 
+            <div class="bar-card my-2">
+              <%= cl_image_tag(booking.bar.photos.first.key ) %>
+              <div class="bar-card-infos">
+                <h2 class="mt-2"><%= booking.bar.name  %></h2>
+                <p>0.2 km away</p>
+                <div>
+                  <% if booking.bar.rating == 0 %>
+                    <p>Not rated yet</p>
+                  <% else %>
+                    <p class="my-1"><% booking.bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+                  <% end %>
+                </div>
+                <div>
+                  <% if booking.bar.many_spaces? %>
+                    <p><i class="fas fa-check-circle text-success"></i> Many spaces available</p>
+                  <% elsif booking.bar.few_spaces? %>
+                    <p><i class="fas fa-exclamation-circle text-warning"></i> Few spaces available</p>
+                  <% elsif booking.bar.no_spaces? %>
+                    <p class="font-weight-bold"><i class="fas fa-ban text-danger"></i> No spaces available</p>
+                  <% end %>
+                </div>
+                <div class="bar-category my-2"><%= booking.bar.category %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="my-3">
+  <%= link_to "Edit", edit_profile_path(@profile), class: "my-3 text-light" %>
+  </div>
+</div>
+</div>
