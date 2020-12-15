@@ -29,6 +29,7 @@ export default class extends Controller {
             // if user rejects
             (err) => {
               // add code to show location input
+              this.formTarget.classList.remove('hide-location')
               this.locationTarget.setAttribute('type', 'text')
             } 
           );

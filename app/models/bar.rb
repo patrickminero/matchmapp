@@ -24,16 +24,16 @@ class Bar < ApplicationRecord
     elsif color == 'red'
       self.red_votes += 1
     end
-    self.calculate_status
     save
   end
 
-  def calculate_status
-    if self.yellow_votes == self.green_votes + 2
-      self.status = 1
-    elsif self.red_votes == self.yellow_votes + 2
-      self.status = 2
+  def availability
+    if self.red_votes == self.yellow_votes + 2
+      "Few spaces"
+    elsif self.yellow_votes == self.green_votes + 2
+      "No spaces"
+    else
+      "Many spaces"
     end
-    save
   end
 end

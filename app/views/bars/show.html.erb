@@ -29,13 +29,19 @@
     </a>
   </div>
   <div class="container bg-white text-secondary">
-    <div class="d-flex justify-content-between align-items-center mt-3">
-      <div>
-        <h3 class="font-weight-bold" style="font-size:25px;"><%= @bar.name %></h3>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+        <h3 class="font-weight-bold mr-2" style="font-size:25px;"><%= @bar.name %></h3>
+        <% if @bar.availability == 'Many spaces' %>
+          <i class="fas fa-check-circle text-success"></i>
+        <% elsif @bar.availability == 'Few spaces' %>
+          <i class="fas fa-exclamation-circle text-warning"></i>
+        <% elsif @bar.availability == 'No spaces' %>
+          <i class="fas fa-ban text-danger"></i>
+        <% end %>
       </div>
       <div>
         <p class="bar-category"><%= @bar.category %></p>
-        <p class="bar-category"  data-target="status-change.status"><%= @bar.status %></p>
       </div>
     </div>
       <div class="d-flex my-0">
@@ -51,13 +57,14 @@
         </div>
       </div>
 
-      <div>
+      <div data-controller="availability">
+      <p>Let others know how busy is <%= @bar.name %> </p>
         <div class="d-flex justify-content-around">
           <div>
-            <%= form_with(url: color_vote_bar_path(@bar)) do |form| %>
+            <%= form_with(url: color_vote_bar_path(@bar)) do  %>
               <%= hidden_field_tag :color, 'green' %>
-              <button class="status-button" >
-                <i class="fas fa-check-circle text-success" id="many"></i>
+              <button class="status-button active" data-availability-target="manyButton"  >
+                <i class="fas fa-check-circle text-success text-muted" data-availability-target="many" id="many"></i>
                 <p class="text-center">Many spaces</p>
               </button>
             <% end %>
@@ -65,8 +72,8 @@
           <div>
             <%= form_with(url: color_vote_bar_path(@bar)) do %>
               <%= hidden_field_tag :color, 'yellow' %>
-              <button class="status-button" >
-                <i class="fas fa-exclamation-circle text-warning" id="many"></i>
+              <button class="status-button" data-action="click->availability#status">
+                <i class="fas fa-exclamation-circle text-warning" data-availability-target="few" id="few"></i>
                 <p class="text-center">Few spaces</p>
               </button>
             <% end %>
@@ -74,14 +81,15 @@
           <div>
             <%= form_with(url: color_vote_bar_path(@bar)) do %>
               <%= hidden_field_tag :color, 'red' %>
-              <button class="status-button" >
-                <i class="fas fa-ban text-danger" id="many"></i>
+              <button class="status-button" data-action="click->availability#status">
+                <i class="fas fa-ban text-danger" data-availability-target="none" id="none"></i>
                 <p class="text-center">No spaces</p>
               </button>
             <% end %>
           </div> 
         </div>
       </div>
+
       <p class="pt-2"><%= @bar.description %></p>
       <%= link_to 'Get directions ', "http://maps.google.com?q=#{@bar.latitude},#{@bar.longitude}", class:"btn btn-primary rounded mb-2 col text-center"  %>
       <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-outline-primary rounded mt-2 col text-center"%>
