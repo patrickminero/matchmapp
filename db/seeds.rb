@@ -8,7 +8,10 @@ User.destroy_all
 puts "Destroyed existing users."
 Match.destroy_all
 puts "Destroyed existing matches."
-
+Screening.destroy_all
+puts "Destroyed existing screenings."
+Chatroom.destroy_all
+puts "Destroyed existing chatroooms."
 puts "Performing background job to import matches."
 LatestGamesJob.perform_now
 
