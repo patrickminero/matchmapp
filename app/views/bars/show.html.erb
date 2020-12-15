@@ -57,34 +57,26 @@
         <p class="mb-0 ml-2"><%= pluralize @bar.reviews.size, "review" %></p>
       </div>
       <div data-controller="availability">
+      <div data-bar-id="<%= @bar.id %>" id="hidden_id" data-token="<%= form_authenticity_token %>"></div>
       <p>Let others know how busy is <%= @bar.name %> </p>
         <div class="d-flex justify-content-around">
           <div>
-            <%= form_with(url: color_vote_bar_path(@bar)) do  %>
-              <%= hidden_field_tag :color, 'green' %>
-              <button class="status-button active" data-availability-target="manyButton"  >
-                <i class="fas fa-check-circle text-success text-muted" data-availability-target="many" id="many"></i>
-                <p class="text-center">Many spaces</p>
-              </button>
-            <% end %>
+            <button class="status-button" data-availability-target="many" data-action="click->availability#manyStatus">
+              <i class="fas fa-check-circle text-success" id="many"></i>
+              <p class="text-center">Many spaces</p>
+            </button>
           </div> 
           <div>
-            <%= form_with(url: color_vote_bar_path(@bar)) do %>
-              <%= hidden_field_tag :color, 'yellow' %>
-              <button class="status-button" data-action="click->availability#status">
-                <i class="fas fa-exclamation-circle text-warning" data-availability-target="few" id="few"></i>
-                <p class="text-center">Few spaces</p>
-              </button>
-            <% end %>
+            <button class="status-button" data-availability-target="few" data-action="click->availability#fewStatus">
+              <i class="fas fa-exclamation-circle text-warning" id="few"></i>
+              <p class="text-center">Few spaces</p>
+            </button>
           </div>
           <div>
-            <%= form_with(url: color_vote_bar_path(@bar)) do %>
-              <%= hidden_field_tag :color, 'red' %>
-              <button class="status-button" data-action="click->availability#status">
-                <i class="fas fa-ban text-danger" data-availability-target="none" id="none"></i>
-                <p class="text-center">No spaces</p>
-              </button>
-            <% end %>
+            <button class="status-button" data-availability-target="none" data-action="click->availability#noneStatus">
+              <i class="fas fa-ban text-danger" id="none"></i>
+              <p class="text-center">No spaces</p>
+            </button>
           </div> 
         </div>
       </div>
