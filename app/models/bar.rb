@@ -15,4 +15,25 @@ class Bar < ApplicationRecord
     total = self.reviews.sum(:rating)
     total / self.reviews.count
   end
+
+  def color_vote(color)
+    if color == 'green'
+      self.green_votes += 1
+    elsif color == 'yellow'
+      self.yellow_votes += 1
+    elsif color == 'red'
+      self.red_votes += 1
+    end
+    save
+  end
+
+  def availability
+    if self.red_votes == self.yellow_votes + 2
+      "Few spaces"
+    elsif self.yellow_votes == self.green_votes + 2
+      "No spaces"
+    else
+      "Many spaces"
+    end
+  end
 end

@@ -13,7 +13,7 @@ export default class extends Controller {
 
       this.map = new mapboxgl.Map({
           container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v10'
+          style: 'mapbox://styles/mapbox/streets-v11'
       });
       this.addMarkers();
     } catch (error) {
@@ -25,8 +25,10 @@ export default class extends Controller {
     const bounds = new mapboxgl.LngLatBounds();
     const markers = JSON.parse(this.mapTarget.dataset.markers);
     markers.forEach( (marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
       new mapboxgl.Marker()
             .setLngLat([ marker.lng, marker.lat ])
+            .setPopup(popup)
             .addTo(this.map);
       bounds.extend([ marker.lng, marker.lat ]);
     })

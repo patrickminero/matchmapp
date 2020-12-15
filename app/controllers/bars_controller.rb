@@ -1,12 +1,15 @@
 class BarsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def index
-    @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] })
+    @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] }).near([session[:latitude], session[:longitude]], 30)
+
     session[:match_id] = params[:match_id]
     @match = Match.find(params[:match_id])
     @markers = @bars.geocoded.map do |bar|
       {
         lat: bar.latitude,
-        lng: bar.longitude
+        lng: bar.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bar: bar })
       }
     end
   end
@@ -28,7 +31,16 @@ class BarsController < ApplicationController
     redirect_to bar_path(@bar)
   end
 
+  def color_vote
+    @bar = Bar.find(params[:id])
+    color = params[:color]
+    @bar.color_vote(color)
+    redirect_to bar_path(@bar)
+  end
+
   private
+
+ 
 
   def bar_params
     params.require(:bar).permit(:status)
