@@ -1,9 +1,9 @@
- <div class="container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://i.imgur.com/gcGB524.jpg);"> 
+ <div class="show-background-bars"> 
   <div class="container">
     <div class="row">
     <div class="col-12 col-md-6">
-      <h3 class="pt-3 font-weight-bold my-5">Hi <%= @user.email %>! Book a table</h3>
-      <div class="bar-card my-2">
+      <h3 class="pt-3 font-weight-bold my-4">Hi <%= @user.name.capitalize! %>! <br><br> Book a table with us!</h3>
+      <div class="bar-card my-4">
           <%= cl_image_tag( @bar.photos.first.key ) %>
           <div class="bar-card-infos">
             <h2 class="mt-2"><%= @bar.name  %></h2>

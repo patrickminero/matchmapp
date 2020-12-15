@@ -10,6 +10,18 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
+.index-background-match {
+  background-size: cover;
+  background-position: left;
+  background-image: url(https://i.imgur.com/TroN2YL.jpg);
+}
+
+.index-background-bars {
+  background-size: cover;
+  background-position: left;
+  background-image: url(https://i.imgur.com/TroN2YL.jpg);
+}
+
 .league-style {
   font-size: 10px;
   opacity: 0.4;
@@ -62,5 +74,4 @@
   border: none;
   outline: none;
   background-color: transparent;
-  font-size: 20px;
 }
