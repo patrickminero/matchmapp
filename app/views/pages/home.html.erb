@@ -1,5 +1,6 @@
 <div class="banner pb-3" >
   <div class="container">
+   <div class="fixed-height-banner">
     <h1>Be there by kickoff!</h1>
     <h2>Find which bar is screening your match.</h2>
     <form novalidate="novalidate" class="simple_form search w-100 col text-center hide-location" data-target="location.form" action="/matches" accept-charset="UTF-8" method="get">
@@ -12,6 +13,7 @@
       </div>
       <button type="submit" class="btn btn-flat col text-center">Search</button>
     </form>
+    </div>
 
   <h4 class="pt-4 pl-3 font-weight-bold" style="color: white">Popular upcoming matches</h4>
       <% @matches.first(5).each do |match| %>
