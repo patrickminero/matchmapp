@@ -11,7 +11,13 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
-        render_to_string(partial: "message", locals: { message: @message })
+        {
+          content: @message.content,
+          user: @message.user.name,
+          user_id: @message.user.id,
+          date: @message.created_at.strftime("%a %b %e at %l:%M%p"),
+          message_id: @message.id
+        }
       )
     else
       render "chatrooms/show"
