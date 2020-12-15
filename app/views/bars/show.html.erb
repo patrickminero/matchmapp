@@ -28,23 +28,23 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="container bg-white text-secondary">
+  <div class="container">
     <div class="d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center mt-2">
         <h3 class="font-weight-bold mr-2" style="font-size:25px;"><%= @bar.name %></h3>
-        <% if @bar.availability == 'Many spaces' %>
-          <i class="fas fa-check-circle text-success"></i>
-        <% elsif @bar.availability == 'Few spaces' %>
-          <i class="fas fa-exclamation-circle text-warning"></i>
-        <% elsif @bar.availability == 'No spaces' %>
-          <i class="fas fa-ban text-danger"></i>
-        <% end %>
+          <% if @bar.availability == 'Many spaces' %>
+            <i class="fas fa-check-circle text-success"></i>
+          <% elsif @bar.availability == 'Few spaces' %>
+            <i class="fas fa-exclamation-circle text-warning"></i>
+          <% elsif @bar.availability == 'No spaces' %>
+            <i class="fas fa-ban text-danger"></i>
+          <% end %>
       </div>
       <div>
-        <p class="bar-category"><%= @bar.category %></p>
+        <p class="bar-category mt-2"><%= @bar.category %></p>
       </div>
     </div>
-    <div class="d-flex my-0">
+    <div class="d-flex flex-column">
       <div>
         <% if @bar.rating == 0 %>
         <p>Not rated yet</p>
@@ -53,7 +53,7 @@
         <% end %>
       </div>
       <div>
-        <p class="mb-0 ml-2"><%= pluralize @bar.reviews.size, "review" %></p>
+        <p><%= pluralize @bar.reviews.size, "review" %></p>
       </div>
       <% if policy(Bar).color_vote? %>
         <div data-controller="availability">
@@ -84,20 +84,20 @@
     </div>
     
     <div id="summary">
-      <p class="collapse pt-2" id="collapseSummary"><%= @bar.description %></p>
+      <p class="collapse mt-3 pt-2" id="collapseSummary"><%= @bar.description %></p>
       <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
     </div>
     <%= link_to 'Get directions ', "http://maps.google.com?q=#{@bar.latitude},#{@bar.longitude}", class:"btn btn-primary rounded mb-2 col text-center"  %>
     <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-primary rounded mt-2 col text-center"%>
     <%= link_to chatroom_path(@screening.chatroom) do %>
         <div>
-          <button class="chat-button d-flex justify-content-center align-items-center w-100">
-            <i class="far fa-comment-dots mx-2"></i>
-            <p class="text-center">Chat with fans already at the bar</p>
+          <button class="chat-button text-white d-flex justify-content-center align-items-center w-100">
+            <i class="far fa-comment-dots pt-4 mx-2"></i>
+            <p class="text-center pt-4">Chat with fans already at the bar</p>
           </button>
         </div>
       <% end %>
-    <p class="pt-2 mt-2 location-style"><%= @bar.address %></p>
+    <p class="pt-2 mt-4 location-style"><%= @bar.address %></p>
     <div data-controller="show-map" class="mt-3 mb-3" >
       <div id="map" data-target="show-map.map"
       style="width: 100%; height: 200px;"

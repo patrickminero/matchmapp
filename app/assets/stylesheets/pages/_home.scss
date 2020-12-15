@@ -13,6 +13,10 @@
   font-weight: bold;
 }
 
+.fixed-height-banner {
+  height: 100vh;
+}
+
 .banner h2 {
   padding: 0px 15px 15px 15px;
   color: white;
@@ -74,6 +78,7 @@
   font-size: 12px;
   text-align: left;
   margin: 0;
+  color: white;
   // line-height: 0;
 }
 .chat-button{
