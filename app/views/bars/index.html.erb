@@ -1,18 +1,19 @@
-<div class="container" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://i.imgur.com/gcGB524.jpg);">
+<div class="index-background-bars">
   <div class="container" data-controller="map-toggler" >
     <%# <%= link_to '< Go back', matches_path(session[:match_id]), class: 'btn btn-outline-primary mt-2 mx-3' %>
-    <div class="text-center pt-5 pb-1">
-      <h3 class="font-weight-bold"><img src="<%= @match.home_team_logo %>" class="mr-2" width="30" height="30"><%= @match.name %><img src="<%= @match.away_team_logo %>" class="ml-2" width="30" height="30"></h3>
+    <div class="text-center pt-4">
+      <h3>Your selected match is:</h3>
     </div>
-    <div class="text-right mt-1">
-      <button data-action="click->map-toggler#toggle" data-map-toggler-target="toggleButton" class="text-primary mb-2" id="toggleButton">Map <i class="fas fa-map-marked-alt"></i></button>
+      <%= render "matches/match_card", match: @match %>
+    <div data-action="click->map-toggler#toggle" data-map-toggler-target="toggleButton" id="toggleButton">
+      <p class="btn btn-primary col text-center mt-1">Click here to find us on the map! <i class="fas fa-map-marked-alt"></i></p>
     </div>
     
     <div class="row">
       <div class="col-12 col-md-6" data-map-toggler-target="barView">
         <% @bars.each do |bar| %>
           <%= link_to bar_path(bar) do %>
-            <div class="bar-card my-2">
+            <div class="bar-card my-3">
               <%= cl_image_tag( bar.photos.first.key ) %>
               <div class="bar-card-infos">
                 <h2 class="mt-2"><%= bar.name  %></h2>
