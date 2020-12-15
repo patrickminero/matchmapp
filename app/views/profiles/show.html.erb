@@ -8,9 +8,13 @@
     <button class="button_bookings border" data-profile-target="bookingButton" data-action="click->profile#showBooking" >My Bookings</button> 
   </div>
   <div class="card border py-5 px-3" data-profile-target="profile">
-    <p class="text-center"><i class="fas fa-running"></i> Welcome <strong><%= @profile.name.capitalize %></strong> to your profile page</p>
-    <p class="text-center"><i class="fas fa-heart"></i>We heard your favourite team is <strong><%= @profile.favourite_team.capitalize %></strong></p>
-    <p class="text-center"><i class="fas fa-medal"></i><strong><%= @profile.favourite_sport %></strong></p>
+    <% if @profile.name.nil? %>
+      <p class="text-center text-dark"><i class="fas fa-running"></i> Welcome to your profile page</p>
+    <% else %>
+      <p class="text-center"><i class="fas fa-running"></i> Welcome <strong><%= @profile.name.capitalize %></strong> to your profile page</p>
+      <p class="text-center"><i class="fas fa-heart"></i>We heard your favourite team is <strong><%= @profile.favourite_team %></strong></p>
+      <p class="text-center"><i class="fas fa-medal"></i><strong><%= @profile.favourite_sport %></strong></p>
+    <% end %>
   </div>
   <div class="card border py-5 px-3 d-none" data-profile-target="booking">
     <% if @profile.bookings.empty? %>
