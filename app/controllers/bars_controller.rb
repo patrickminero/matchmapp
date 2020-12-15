@@ -1,7 +1,7 @@
 class BarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   def index
-    @bars = Bar.includes(:matches).where(matches: { id: params[:match_id] }).near([session[:latitude], session[:longitude]], 30)
+    @bars = policy_scope(Bar).includes(:matches).where(matches: { id: params[:match_id] }).near([session[:latitude], session[:longitude]], 30)
 
     session[:match_id] = params[:match_id]
     @match = Match.find(params[:match_id])
@@ -22,6 +22,8 @@ class BarsController < ApplicationController
       lng: @bar.longitude
     }]
     @screening = Screening.find_by(match_id: session[:match_id], bar_id: params[:id])
+
+    authorize @bar
   end
 
   def update
@@ -35,7 +37,6 @@ class BarsController < ApplicationController
     @bar = Bar.find(params[:id])
     color = params[:color]
     @bar.color_vote(color)
-    
     respond_to do |format|
       format.html { redirect_to bar_path(@bar) }
       format.json { render json: @bar }
@@ -43,8 +44,6 @@ class BarsController < ApplicationController
   end
 
   private
-
- 
 
   def bar_params
     params.require(:bar).permit(:status)

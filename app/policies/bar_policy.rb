@@ -1,7 +1,11 @@
 class BarPolicy < ApplicationPolicy
 
   def color_vote?
-    user.nil? ? false : true
+    !user.nil?
+  end
+  
+  def show?
+    true
   end
 
   class Scope < Scope
