@@ -8,7 +8,8 @@ class BarsController < ApplicationController
     @markers = @bars.geocoded.map do |bar|
       {
         lat: bar.latitude,
-        lng: bar.longitude
+        lng: bar.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { bar: bar })
       }
     end
   end
