@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 2020_12_15_152202) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total_seats"
     t.boolean "bookable", default: false
-    t.integer "red_votes"
-    t.integer "yellow_votes"
+    t.integer "red_votes", default: 0
+    t.integer "yellow_votes", default: 0
     t.integer "green_votes", default: 0
   end
 
