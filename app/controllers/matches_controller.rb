@@ -16,11 +16,11 @@ class MatchesController < ApplicationController
     end
 
     if params[:query].present?
-      @matches = Match.global_search(params[:query])
+      @matches = policy_scope(Match).global_search(params[:query])
     elsif params[:sports].present?
-      @matches = Match.where(sports: params[:sports])
+      @matches = policy_scope(Match).where(sports: params[:sports])
     else
-      @matches = Match.all
+      @matches = policy_scope(Match)
     end
   end
 end
