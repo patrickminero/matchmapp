@@ -1,0 +1,63 @@
+.banner_profile {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;
+  height: 200px;
+} 
+.banner {
+  background-size: cover;
+  background-position: center;
+  // background-image: url(https://i.imgur.com/TroN2YL.jpg);
+  background-color: black;
+} 
+
+.button_profile {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 20px 0;
+  border-radius: 35px 0 0 0;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  width: 50%;
+  text-align: center;
+  position: relative;
+}
+
+.button_profile:focus, .button_bookings:focus {
+  outline: none;
+}
+.button_profile:hover, .button_bookings:hover {
+  opacity: 1;
+  background-color: white;
+}
+
+.button_profile.active_tab,.button_bookings.active_tab{
+  background-color: white;
+  opacity: 1;
+}
+
+.button_bookings {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 20px 0;
+  border-radius:  0 35px 0 0;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  width: 50%;
+  text-align: center;
+}
+
+
+
+
+.container_profile {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+}
