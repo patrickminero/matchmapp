@@ -107,3 +107,9 @@ Bar.create(
   end
 
   puts "Finish seeding and created #{User.count} user & #{Bar.count} bars"
+
+
+  
+
+
+

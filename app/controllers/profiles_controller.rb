@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
+    @bookings = @profile.user.bookings
   end
 
   def edit
@@ -17,7 +18,8 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:favourite_sport, :favourite_team, :name, :description)
+    params.require(:profile).permit(:favourite_sport, :favourite_team, :name, :description, :photo)
   end
+
 
 end

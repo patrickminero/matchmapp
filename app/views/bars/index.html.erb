@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-12 col-md-6" data-map-toggler-target="barView">
       <% @bars.each do |bar| %>
-        <%= link_to bar_path(bar) do %>
+        <%= link_to bar_path(bar) do%>
           <div class="bar-card my-2">
             <%= cl_image_tag( bar.photos.first.key ) %>
             <div class="bar-card-infos">
@@ -33,12 +33,11 @@
                   <p class="font-weight-bold"><i class="fas fa-ban text-danger"></i> No spaces available</p>
                 <% end %>
               </div>
-              
+              <% end %>
               <div class="bar-category my-2"><%= bar.category %></div>
             </div>
           </div>
         <% end %>
-      <% end %>
     </div>
 
     <div class="col-12 col-md-6 rounded d-none" data-map-toggler-target="mapView">

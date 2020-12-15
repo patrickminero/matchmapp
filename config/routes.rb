@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/dashboard', to: 'bookings#dashboard'
   get '/bookings/:id/accepted', to: 'bookings#accepted', as: :accepted
+  get '/bookings/:id/confirmation', to: 'bookings#confirmation', as: :confirmation
   resources :bars do
     resources :reviews, only: :create
   end
@@ -13,12 +14,9 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:show, :edit, :update]
   resources :bars, only: [:show] do
-    resources :bookings, only: [:new, :create, :show, :update, :edit] do
-      member do
-        get :confirmation
-      end
-    end
+    resources :bookings, only: [:new, :create, :show, :update, :edit]
   end
+
   resources :bookings, only: :destroy
   resources :chatrooms, only: :show do
     resources :messages, only: :create
