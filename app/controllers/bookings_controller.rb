@@ -14,17 +14,19 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.match = Match.find(session[:match_id])
     if @booking.save
-      redirect_to confirmation_bar_booking_path(@bar.id, @booking.id)
+      redirect_to confirmation_path(@booking.id)
     else
       render :new
     end
   end
 
   def confirmation
-    @bar = Bar.find(params[:bar_id])
     @booking = Booking.find(params[:id])
+    @bar = @booking.bar
     @match = Match.find(session[:match_id])
   end
+
+  
 
   def dashboard
     @bookings = Booking.all.order(:created_at)
