@@ -5,6 +5,7 @@ class BookingsController < ApplicationController
     @bar = Bar.find(params[:bar_id])
     @match = Match.find(session[:match_id])
     @user = current_user
+    authorize @booking
   end
 
   def create
@@ -18,18 +19,21 @@ class BookingsController < ApplicationController
     else
       render :new
     end
+    authorize @booking
   end
 
   def confirmation
     @booking = Booking.find(params[:id])
     @bar = @booking.bar
     @match = Match.find(session[:match_id])
+    authorize @booking
   end
 
   
 
   def dashboard
     @bookings = Booking.all.order(:created_at)
+    authorize @bookings
   end
 
   def accepted
