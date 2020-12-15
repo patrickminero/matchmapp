@@ -19,7 +19,7 @@ class Profile < ApplicationRecord
     if photo.attached?
       photo.key
     else
-      "https://kitt.lewagon.com/placeholder/users/ssaunier"
+      "https://i.pinimg.com/474x/6f/64/60/6f6460212a397968497afbb9d81d6b3a.jpg"
     end
   end
 
