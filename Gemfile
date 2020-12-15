@@ -25,7 +25,7 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'faker'
 gem 'geocoder'
 gem 'pg_search'
-
+gem 'pundit'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
