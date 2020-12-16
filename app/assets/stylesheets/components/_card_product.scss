@@ -5,6 +5,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  border-radius:8px;
 }
 
 .card-product img {
@@ -14,7 +15,7 @@
 }
 
 .card-product h2 {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: bold;
   margin: 0;
 }
@@ -24,6 +25,7 @@
   margin-bottom: 0;
   margin-top: 8px;
   color: black;
+  font-size:17px;
 }
 
 .card-product .card-product-infos {
