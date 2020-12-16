@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 
 export default class extends Controller {
   static targets = [ 'map' ];
-  connect() { 
+  connect(event) { 
   this.initMapbox();
 }
 
@@ -13,9 +13,13 @@ export default class extends Controller {
 
       this.map = new mapboxgl.Map({
           container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v11'
+          style: 'mapbox://styles/mapbox/streets-v11',
       });
       this.addMarkers();
+
+      setTimeout(() => {
+        this.map.resize()
+      }, 100);
     } catch (error) {
       console.log(error)
     }
