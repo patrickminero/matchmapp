@@ -1,7 +1,7 @@
 <div class="index-background-match pb-5">
   <div class="container">
   <% if params[:location].present? %>
-      <h4 class="pt-2 pl-4"><strong>Upcoming Matches in <%= params[:location] %></strong></h4>
+      <h4 class="pt-4 pl-3"><strong>Upcoming Matches in <%= params[:location] %></strong></h4>
    <% elsif params[:latitude].present? && params[:longitude].present? %>
       <h4 class="pt-2 pl-4"><strong>Upcoming Matches in <%= Geocoder.search([params[:latitude], params[:longitude]]).first.city_district %>, <%= Geocoder.search([params[:latitude], params[:longitude]]).first.city %></strong></h4>
    <% end %>
