@@ -41,6 +41,8 @@ class BarsController < ApplicationController
       format.html { redirect_to bar_path(@bar) }
       format.json { render json: @bar }
      end
+
+    authorize @bar
   end
 
   private
