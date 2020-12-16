@@ -3,3 +3,33 @@
   background-position: center;
   background-image: url(https://i.imgur.com/TroN2YL.jpg);
 }
+
+.dark-background-bars {
+  background-size: cover;
+  background-position: center;
+  background-image: url(https://www.splitshire.com/wp-content/uploads/2015/03/SplitShire-8098-1800x1200.jpg);
+}
+
+.availability-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.circle-size {
+  font-size: 25px;
+}
+
+.bar-category-position {
+  margin-bottom: 2rem !important;
+}
+
+.container-fix-position {
+  width: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
