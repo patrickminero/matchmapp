@@ -8,7 +8,7 @@
 
     <div class="">
       <%= form_tag matches_path, method: :get do %>
-        <div class="pb-2 d-flex justify-content-between pt-2">
+        <div class="pb-2 d-flex justify-content-center pt-2">
           <% SPORT_CATEGORY.each do |sport| %>
             <div class="tag-item">
                 <input type="checkbox" name="sports[]" id="<%= sport %>" value="<%= sport %>" class="tag-selector">
