@@ -6,8 +6,19 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  justify-content: right;
+  margin-right: -15px;
 }
 
 .navbar-lewagon .navbar-brand img {
   width: 120px;
+}
+
+.my-navbar-collapse {
+  margin-right: -15px;
+  border-bottom-left-radius: 5px;
+}
+
+#navbarSupportedContent.collapsing {
+  overflow: visible;
 }

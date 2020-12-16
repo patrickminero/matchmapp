@@ -87,7 +87,7 @@
       <p class="collapse mt-3 pt-2" id="collapseSummary"><%= @bar.description %></p>
       <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
     </div>
-    <%= link_to 'Get directions ', "http://maps.google.com?q=#{@bar.latitude},#{@bar.longitude}", class:"btn btn-primary rounded mb-2 col text-center"  %>
+    <%= link_to 'Get directions ', "https://www.google.com/maps/dir/#{session[:latitude]},#{session[:longitude]}/#{@bar.latitude},#{@bar.longitude}", target: "_blank", class:"btn btn-primary rounded mb-2 col text-center"  %>
     <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-primary rounded mt-2 col text-center"%>
     <%= link_to chatroom_path(@screening.chatroom) do %>
         <div>

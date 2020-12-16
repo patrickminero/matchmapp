@@ -10,6 +10,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  color: black;
 }
 
 .index-background-match {
@@ -25,17 +26,21 @@
 }
 
 .league-style {
-  font-size: 10px;
+  font-size: 14px;
   opacity: 0.4;
+  color: black;
 }
 
 .teams-style {
-  font-size: 15px;
+  font-size: 17px;
+  color: black;
 }
 
 .date-style {
-  font-size: 11px;
-  opacity: 0.7;
+  font-size: 14px;
+  opacity: 0.4;
+  color: black;
+
 }
 
 .filter-button {
@@ -77,3 +82,14 @@
   outline: none;
   background-color: transparent;
 }
+.bar-div{
+  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.transition{
+  opacity: 0;
+  display: none;
+}
+
