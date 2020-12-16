@@ -1,5 +1,5 @@
-<div class="banner">
-<div class="banner_profile" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @profile.get_background %>);"> 
+<div class="background" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @profile.get_background %>);"> 
+<div class=" ">
 <%= cl_image_tag @profile.photo_url , {class: "avatar-large", alt: "avatar-large"} %>
 </div>  
 <div class="container_profile" data-controller="profile">
@@ -7,26 +7,28 @@
     <button class="button_profile border active_tab" data-profile-target="profileButton" data-action="click->profile#showProfile">Profile</button> 
     <button class="button_bookings border" data-profile-target="bookingButton" data-action="click->profile#showBooking" >My Bookings</button> 
   </div>
-  <div class="card border py-5 px-3" data-profile-target="profile">
+  <div class="information py-3 px-3" data-profile-target="profile">
     <% if @profile.name.nil? %>
-      <p class="text-center text-dark"><i class="fas fa-running"></i> Welcome to your profile page</p>
+      <p class="text-center "><i class="fas fa-running"></i> Welcome to your profile page</p>
     <% else %>
-      <p class="text-center"><i class="fas fa-running"></i> Welcome <strong><%= @profile.name.capitalize %></strong> to your profile page</p>
-      <p class="text-center"><i class="fas fa-heart"></i>We heard your favourite team is <strong><%= @profile.favourite_team %></strong></p>
-      <p class="text-center"><i class="fas fa-medal"></i><strong><%= @profile.favourite_sport %></strong></p>
+      <p class=""><i class="fas fa-running"></i>  Welcome <strong><%= @profile.name.capitalize %></strong> to your profile page</p>
+      <p class=""><i class="fas fa-heart"></i>  We heard your favourite team is <strong><%= @profile.favourite_team %></strong></p>
+      <p class=""><i class="fas fa-medal"></i>  <strong><%= @profile.favourite_sport %></strong></p>
+      <p class="">" <%= @profile.description %> "</p>
     <% end %>
   </div>
-  <div class="card border py-5 px-3 d-none" data-profile-target="booking">
+  <div class="information py-3 px-3 d-none" data-profile-target="booking">
     <% if @profile.bookings.empty? %>
       <p class="text-center">You don't have any upcomming booking</p>
       <%= link_to  matches_path do%>
-      <p class="text-center">See our  <i class="fas fa-medal"></i>  Upcomming Events  <i class="far fa-futbol"></i></p>
+      <p class="text-center">Click here to see our</p>
+      <p class="text-center"><i class="fas fa-medal"></i>  Upcomming Events  <i class="far fa-futbol"></i></p>
       <% end %>
     <% else %>
-      <div class="col-12 col-md-6" data-map-toggler-target="barView">
+      <div class="" data-map-toggler-target="barView">
         <% @bookings.each do |booking| %>
           <%= link_to confirmation_path(booking) do %> 
-            <div class="bar-card my-2">
+            <div class="bar-card my-4">
               <%= cl_image_tag(booking.bar.photos.first.key ) %>
               <div class="bar-card-infos">
                 <h2 class="mt-2"><%= booking.bar.name  %></h2>
@@ -56,7 +58,7 @@
     <% end %>
   </div>
   <div class="my-3">
-  <%= link_to "Edit", edit_profile_path(@profile), class: "my-3 text-light" %>
+  <%= link_to "Edit     ", edit_profile_path(@profile), class: "my-3 text-light" %><i class="fas fa-cog"></i>
   </div>
 </div>
 </div>

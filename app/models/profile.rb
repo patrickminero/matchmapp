@@ -10,9 +10,19 @@ class Profile < ApplicationRecord
       response = JSON.parse response.body, symbolize_names: true
       response[:teams][0][:strTeamFanart1]
     rescue
-      "https://i.imgur.com/TroN2YL.jpg"
+      ""
     end
+  end
 
+  
+  def get_badge
+    begin
+      response = HTTParty.get("https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=#{self.favourite_team}")
+      response = JSON.parse response.body, symbolize_names: true
+      response[:teams][0][:strTeamBadge]
+    rescue
+      ""
+    end
   end
 
   def photo_url
