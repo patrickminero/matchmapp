@@ -18,18 +18,15 @@ LatestGamesJob.perform_now
 User.create!({
   email: "andrea@email.com",
   password: "123456",
-  name: "Andrea R",
   admin: true
 })
 User.create!({
   email: "patrick@email.com",
-  password: "123456",
-  name: "Patrick M"
+  password: "123456"
 })
 User.create!({
   email: "adrian@email.com",
-  password: "123456",
-  name: "Adrian D"
+  password: "123456"
 })
 
 puts "Finish seeding and created #{User.count} users"

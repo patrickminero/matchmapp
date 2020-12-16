@@ -2,7 +2,12 @@
   <div class="container">
     <div class="row">
     <div class="col-12 col-md-6">
-      <h3 class="pt-3 font-weight-bold my-4">Hi <%= @user.name.capitalize! %>! <br><br> Book a table with us!</h3>
+      <h3 class="pt-3 font-weight-bold my-4">Hi 
+      <% if @user.profile.name %>
+        <%= @user.profile.name.capitalize %>! <br><br> Book a table with us!</h3>
+      <% else %>
+        there!<br><br> Book a table with us!</h3>
+      <% end %>
       <div class="bar-card my-4">
           <%= cl_image_tag( @bar.photos.first.key ) %>
           <div class="bar-card-infos">
