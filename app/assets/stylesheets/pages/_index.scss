@@ -81,3 +81,14 @@
   outline: none;
   background-color: transparent;
 }
+.bar-div{
+  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.transition{
+  opacity: 0;
+  display: none;
+}
+

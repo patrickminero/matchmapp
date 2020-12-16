@@ -22,7 +22,6 @@ class BarsController < ApplicationController
       lng: @bar.longitude
     }]
     @screening = Screening.find_by(match_id: session[:match_id], bar_id: params[:id])
-
     authorize @bar
   end
 
