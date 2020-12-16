@@ -1,22 +1,15 @@
-<div class="show-background-bars"> 
+<div class="dark-background-bars"> 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <% @bar.photos[0..3].each_with_index do |photo, index| %>
+        <li data-target="#carouselExampleIndicators" data-slide-to="<%= index%>" class="<%= 'active' if index == 0 %>"></li>
+      <% end %>
     </ol>
     <div class="carousel-inner rounded">
-      <div class="carousel-item active ml-100">
-        <%= cl_image_tag @bar.photos.first.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
-      </div>
-      <% if @bar.photos.second %>
-      <div class="carousel-item">
-        <%= cl_image_tag @bar.photos.second.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
-      </div>
-      <% elsif @bar.photos.third %>
-      <div class="carousel-item">
-        <%= cl_image_tag @bar.photos.third.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
-      </div>
+      <% @bar.photos[0..3].each_with_index do |photo, index| %>
+        <div class="carousel-item ml-100 <%= 'active' if index == 0 %>">
+          <%= cl_image_tag photo.key, height: 250, width: 500, crop: :fill, class:"d-block w-300" %>
+        </div>
       <% end %>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -28,105 +21,141 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <div class="container">
+  <div class="container-fix-position pt-3 pb-1">
     <div class="d-flex justify-content-between align-items-center">
-      <div class="d-flex align-items-center mt-2">
-        <h3 class="font-weight-bold mr-2" style="font-size:25px;"><%= @bar.name %></h3>
-          <% if @bar.availability == 'Many spaces' %>
-            <i class="fas fa-check-circle text-success"></i>
-          <% elsif @bar.availability == 'Few spaces' %>
-            <i class="fas fa-exclamation-circle text-warning"></i>
-          <% elsif @bar.availability == 'No spaces' %>
-            <i class="fas fa-ban text-danger"></i>
-          <% end %>
+      <div class="d-flex flex-column mt-2">
+        <h3 class="font-weight-bold mr-2" style="font-size:30px;"><%= @bar.name %></h3>
+            <div class="d-flex">
+              <% if @bar.availability == 'Many spaces' %>
+                <i class="fas fa-check-circle circle-size text-success mt-1 mr-2" id="many"></i>
+                <p class="text-center mt-1"><em>Available</em></p>
+              <% elsif @bar.availability == 'Few spaces' %>
+                <i class="fas fa-exclamation-circle text-warning mr-2" id="few"></i>
+                <p class="text-center mt-1">Filling up</p>
+              <% elsif @bar.availability == 'No spaces' %>
+                <i class="fas fa-ban text-danger mr-2" id="none"></i>
+                <p class="text-center mt-1">Full</p>
+               <% end %>
+            </div>
       </div>
-      <div>
-        <p class="bar-category mt-2"><%= @bar.category %></p>
+      <div class="bar-category-position">
+        <p class="bar-category"><%= @bar.category %></p>
       </div>
     </div>
     <div class="d-flex flex-column">
       <div>
         <% if @bar.rating == 0 %>
-        <p>Not rated yet</p>
+          <p>Not rated yet</p>
         <% else %>
-        <p><% @bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+          <p><% @bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %> <%= pluralize @bar.reviews.size, "review" %></p>
         <% end %>
       </div>
       <div>
-        <p><%= pluralize @bar.reviews.size, "review" %></p>
+        
       </div>
       <% if policy(Bar).color_vote? %>
-        <div data-controller="availability">
+        <div data-controller="availability" class="availability-card my-3">
           <div data-bar-id="<%= @bar.id %>" id="hidden_id" data-token="<%= form_authenticity_token %>"></div>
-          <p>Let others know how busy is <%= @bar.name %> </p>
           <div class="d-flex justify-content-around">
             <div>
               <button class="status-button" data-availability-target="many" data-action="click->availability#manyStatus">
                 <i class="fas fa-check-circle text-success" id="many"></i>
-                <p class="text-center">Many spaces</p>
+                <p class="text-center">Available</p>
               </button>
             </div> 
             <div>
               <button class="status-button" data-availability-target="few" data-action="click->availability#fewStatus">
                 <i class="fas fa-exclamation-circle text-warning" id="few"></i>
-                <p class="text-center">Few spaces</p>
+                <p class="text-center">Filling up</p>
               </button>
             </div>
             <div>
               <button class="status-button" data-availability-target="none" data-action="click->availability#noneStatus">
                 <i class="fas fa-ban text-danger" id="none"></i>
-                <p class="text-center">No spaces</p>
+                <p class="text-center">Full</p>
               </button>
             </div> 
           </div>
         </div>
       <% end %>
+        <%= link_to chatroom_path(@screening.chatroom) do %>
+          <div>
+            <button class="chat-button text-white d-flex justify-content-center align-items-center w-100">
+              <i class="far fa-comment-dots pt-3 mx-2"></i>
+              <p class="text-center pt-3">Chat with fans already at the bar</p>
+            </button>
+          </div>
+        <% end %>
     </div>
-    
+
     <div id="summary">
       <p class="collapse mt-3 pt-2" id="collapseSummary"><%= @bar.description %></p>
       <a class="collapsed" data-toggle="collapse" href="#collapseSummary" aria-expanded="false" aria-controls="collapseSummary"></a>
     </div>
-    <%= link_to 'Get directions ', "https://www.google.com/maps/dir/#{session[:latitude]},#{session[:longitude]}/#{@bar.latitude},#{@bar.longitude}", target: "_blank", class:"btn btn-primary rounded mb-2 col text-center"  %>
-    <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-primary rounded mt-2 col text-center"%>
-    <%= link_to chatroom_path(@screening.chatroom) do %>
-        <div>
-          <button class="chat-button text-white d-flex justify-content-center align-items-center w-100">
-            <i class="far fa-comment-dots pt-4 mx-2"></i>
-            <p class="text-center pt-4">Chat with fans already at the bar</p>
-          </button>
-        </div>
-      <% end %>
     <p class="pt-2 mt-4 location-style"><%= @bar.address %></p>
-    <div data-controller="show-map" class="mt-3 mb-3" >
+  </div>
+    <div data-controller="show-map" class="mt-1" >
       <div id="map" data-target="show-map.map"
       style="width: 100%; height: 200px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  </div>
-  <div id="reviews">
+
+  <div class="container-fix-position">
+    <%= link_to 'Get directions ', "https://www.google.com/maps/dir/#{session[:latitude]},#{session[:longitude]}/#{@bar.latitude},#{@bar.longitude}", target: "_blank", class:"btn btn-primary rounded mb-2 col text-center"  %>
+    <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-primary rounded mt-2 col text-center"%>
+
+
+    <div id="reviews" class="mt-5">
+    <h3>Reviews</h3>
     <% if @bar.reviews.blank? %>
-    Be the first to leave a review for <%= @bar.name %>
+      Be the first to leave a review for <%= @bar.name %>
     <% else %>
-    <% @bar.reviews.each do |review| %>
-    <div class="card bg-light text-dark mb-2 pl-2 py-2 w-100 rounded">
-      <p class="mb-0"><strong><%= review.content %></strong></p>
-      <div class="d-flex justify-content-between align-items-end">
-        <div>
-          <p class="mb-1 rounded"><% review.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+      <%= pluralize @bar.reviews.size, "review" %>
+      <% @bar.reviews.first(3).each do |review| %>
+        <div class="card bg-light text-dark mb-2 pl-2 py-2 w-100 rounded">
+          <p class="mb-1"><strong><%= review.content %></strong></p>
+          <div class="d-flex justify-content-between align-items-end">
+            <div>
+              <p class="mb-1 rounded">
+                <% review.rating.times do %>
+                  <i class="fas fa-star text-primary"></i>
+                <% end %>
+              </p>
+            </div>
+            <div>
+              <p class="mr-2 mb-0">- <%= review.user.name %></p>
+            </div>
+          </div>
         </div>
-        <div>
-          <p class="mr-2 mb-0">- <%= review.user.name %></p>
-        </div>
+      <% end %>
+      <p class="mt-3">
+        <a class="btn btn-outline-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          See more
+        </a>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <% @bar.reviews[3..].each do |review| %>
+          <div class="card bg-light text-dark mb-2 pl-2 py-2 w-100 rounded">
+            <p class="mb-1">
+              <strong><%= review.content %></strong>
+            </p>
+            <div class="d-flex justify-content-between align-items-end">
+              <div>
+                <p class="mb-1 rounded"><% review.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
+              </div>
+              <div>
+                <p class="mr-2 mb-0">- <%= review.user.name %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
-    <% end %>
     <% end %>
     <%= simple_form_for([ @bar, @review ], remote: true) do |f| %>
-    <%= f.input :content, as: :text %>
-    <%= f.input :rating, collection: 1..5 %>
-    <%= f.button :submit, class:"btn btn-primary mb-3" %>
+      <%= f.input :content, as: :text %>
+      <%= f.input :rating, collection: 1..5 %>
+      <%= f.button :submit, class:"btn btn-primary mb-3" %>
     <% end %>
     </div>
-</div>
+  </div>

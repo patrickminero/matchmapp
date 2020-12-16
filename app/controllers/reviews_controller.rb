@@ -4,6 +4,8 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.bar = @bar
     @review.user = current_user
+
+    authorize @review
     if @review.save
       redirect_to bar_path(@bar)
     else
