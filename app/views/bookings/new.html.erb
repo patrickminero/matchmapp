@@ -1,8 +1,13 @@
- <div class="show-background-bars"> 
+ <div class="dark-background-bars container"> 
   <div class="container">
-    <div class="row">
-    <div class="col-12 col-md-6">
-      <h3 class="pt-3 font-weight-bold my-4">Hi <%= @user.name.capitalize! %>! <br><br> Book a table with us!</h3>
+    <div>
+    <div>
+      <h3 class="pt-3 font-weight-bold">Hi 
+      <% if @user.profile.name %>
+        <%= @user.profile.name.capitalize %>! <br><br> Book a table with us!</h3>
+      <% else %>
+        there!<br><br> Book a table with us!</h3>
+      <% end %>
       <div class="bar-card my-4">
           <%= cl_image_tag( @bar.photos.first.key ) %>
           <div class="bar-card-infos">
@@ -33,10 +38,26 @@
           <%= b.input :date, as: :date %>
           <%= b.input :time, as: :time %>
           <%= b.input :number_of_people, collection: 1..5 %>
-          <%= render "matches/match_card", match: @match %>
+          <div class="card-product w-80 my-3 p-2 card-match-info ">
+            <div class="card-product-info px-1 w-100 d-flex flex-column">
+              <p class="league-style col text-center mb-1"><strong><%= @match.league %></p></strong>
+              <div class="d-flex flex-column align-items-center">
+                <span class="font-weight-bold"><%= @match.home_team %></span>
+                <div class="d-flex justify-content-around w-100 align-items-center">
+                  <img src="<%= @match.home_team_logo %>" width="40" height="40">
+                  <span>vs</span>
+                  <img src="<%= @match.away_team_logo %>" width="40" height="40">
+                </div>
+                <span class="font-weight-bold"><%= @match.away_team %></span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <span class="date date-style"><%= @match.date.strftime("%A %b %d, %Y, %H:%M") %></span>
+                <span class="badge badge-primary"><%= @match.sports %></span>
+              </div>
+            </div>
+          </div>
           <%= b.submit 'Confirm Booking', class:"btn btn-flat w-100"%> 
         <% end %>
-        <br>
       </div>
     </div>
     </div>

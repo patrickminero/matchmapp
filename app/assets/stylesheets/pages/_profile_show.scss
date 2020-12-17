@@ -3,13 +3,15 @@
   background-position: center;
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 270px;
 } 
-.banner {
+
+.background {
   background-size: cover;
   background-position: center;
-  // background-image: url(https://i.imgur.com/TroN2YL.jpg);
-  background-color: black;
+  background-image: url(https://www.splitshire.com/wp-content/uploads/2015/03/SplitShire-8098-1800x1200.jpg); 
+  min-height: 100vh;
+  
 } 
 
 .button_profile {
@@ -35,7 +37,8 @@
 
 .button_profile.active_tab,.button_bookings.active_tab{
   background-color: white;
-  opacity: 1;
+  opacity: 0.9;
+  color: black;
 }
 
 .button_bookings {
@@ -48,6 +51,7 @@
   transition: opacity 0.3s ease;
   width: 50%;
   text-align: center;
+
 }
 
 
@@ -55,9 +59,40 @@
 
 .container_profile {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 30px;
+  padding-left: 30px;
   margin-right: auto;
   margin-left: auto;
   position: relative;
+  bottom: -225px;
+}
+
+.information {
+  min-height: 315px;
+  border-radius: 0px 0px 15px 15px;
+  background-color: white;
+  opacity: 0.9;
+  p{
+  color: black;
+  }
+}
+
+.select2-results__options {
+  color: black;
+}
+
+.select2-selection__rendered {
+  color:black;
+}
+
+.badge_profile {
+  position: relative;
+  z-index: -2;
+}
+
+.badge_profile_back {
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }

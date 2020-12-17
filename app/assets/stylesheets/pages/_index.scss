@@ -3,12 +3,14 @@
 @import "matches_index";
 @import "chatroom";
 @import "profile_show";
-
+@import "profile_edit";
+  
 
 .card-match-info {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  color: black;
 }
 
 .index-background-match {
@@ -26,15 +28,19 @@
 .league-style {
   font-size: 14px;
   opacity: 0.4;
+  color: black;
 }
 
 .teams-style {
   font-size: 17px;
+  color: black;
 }
 
 .date-style {
   font-size: 14px;
   opacity: 0.4;
+  color: black;
+
 }
 
 .filter-button {
@@ -48,7 +54,7 @@
 .bar-category {
   cursor: pointer;
   display: inline-block;
-  font-size: 0.7rem;
+  font-size: 1rem;
   border-radius: 2px;
   padding: 0.1rem 0.5rem;
   background-color: #D73A49;
@@ -76,3 +82,14 @@
   outline: none;
   background-color: transparent;
 }
+.bar-div{
+  display: block;
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.transition{
+  opacity: 0;
+  display: none;
+}
+

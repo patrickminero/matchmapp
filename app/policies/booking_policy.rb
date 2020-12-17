@@ -20,4 +20,12 @@ class BookingPolicy < ApplicationPolicy
   def dashboard?
     return true
   end
+
+  def accepted?
+    return true
+  end
+
+  def destroy?
+    return true
+  end
 end
