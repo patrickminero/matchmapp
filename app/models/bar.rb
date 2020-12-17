@@ -29,9 +29,9 @@ class Bar < ApplicationRecord
 
   def availability
     if self.red_votes == self.yellow_votes + 2
-      "Few spaces"
-    elsif self.yellow_votes == self.green_votes + 2
       "No spaces"
+    elsif self.yellow_votes == self.green_votes + 2
+      "Few spaces"
     else
       "Many spaces"
     end

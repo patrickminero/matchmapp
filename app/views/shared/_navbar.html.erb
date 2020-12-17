@@ -7,7 +7,7 @@
     <%= cl_image_tag @profile.photo_url, class: "avatar", id: "navbarDropdown", data: { toggle: "collapse", target: "#navbarSupportedContent" }, 'aria-haspopup': true, 'aria-expanded': false %>
   <% else %>
     <div class="d-flex justify-content-center">
-    <%= link_to "Sign up |", new_user_registration_path %>
+    <%= link_to "Sign up | ", new_user_registration_path %>
     <%= link_to "Login", new_user_session_path %>
     </div>
   <% end %>
@@ -28,7 +28,7 @@
 
       <% else %>
         <li class="nav-item">
-          <%= link_to "Sign up |", new_user_session_path %>
+          <%= link_to "Sign up | ", new_user_registration_path %>
           <%= link_to "Login", new_user_session_path %>
         </li>
       <% end %>

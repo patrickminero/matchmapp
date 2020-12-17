@@ -1,6 +1,10 @@
-<div class="background" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @profile.get_background %>);"> 
+<% if @profile.get_background %>
+  <div class="background" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @profile.get_background %>);">
+<% else %>
+  <div class="index-background-match background">
+<% end %>
 <div class=" ">
-<%= cl_image_tag @profile.photo_url , {class: "avatar-large", alt: "avatar-large"} %>
+<%= cl_image_tag @profile.photo_url , {class: "avatar-large", alt: "avatar-large", gravity: :face} %>
 </div>  
 <div class="container_profile" data-controller="profile">
   <div class="d-flex justify-content-center">
