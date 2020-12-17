@@ -27,13 +27,13 @@
         <h3 class="font-weight-bold mr-2" style="font-size:30px;"><%= @bar.name %></h3>
             <div class="d-flex">
               <% if @bar.availability == 'Many spaces' %>
-                <i class="fas fa-check-circle circle-size text-success mt-1 mr-2" id="many"></i>
+                <i class="fas fa-check-circle circle-size text-success mt-1 mr-2"  id="many"></i>
                 <p class="text-center mt-1"><em>Available</em></p>
               <% elsif @bar.availability == 'Few spaces' %>
-                <i class="fas fa-exclamation-circle text-warning mr-2" id="few"></i>
+                <i class="fas fa-exclamation-circle text-warning mr-2"  id="few"></i>
                 <p class="text-center mt-1">Filling up</p>
               <% elsif @bar.availability == 'No spaces' %>
-                <i class="fas fa-ban text-danger mr-2" id="none"></i>
+                <i class="fas fa-ban text-danger mr-2"  id="none"></i>
                 <p class="text-center mt-1">Full</p>
                <% end %>
             </div>
@@ -59,19 +59,19 @@
           <div class="d-flex justify-content-around">
             <div>
               <button class="status-button" data-availability-target="many" data-action="click->availability#manyStatus">
-                <i class="fas fa-check-circle text-success" id="many"></i>
+                <i class="fas fa-check-circle text-success" data-availability-target="manyicone" id="many"></i>
                 <p class="text-center">Available</p>
               </button>
             </div> 
             <div>
               <button class="status-button" data-availability-target="few" data-action="click->availability#fewStatus">
-                <i class="fas fa-exclamation-circle text-warning" id="few"></i>
+                <i class="fas fa-exclamation-circle text-warning" data-availability-target="fewicone" id="few"></i>
                 <p class="text-center">Filling up</p>
               </button>
             </div>
             <div>
               <button class="status-button" data-availability-target="none" data-action="click->availability#noneStatus">
-                <i class="fas fa-ban text-danger" id="none"></i>
+                <i class="fas fa-ban text-danger" data-availability-target="noneicone" id="none"></i>
                 <p class="text-center">Full</p>
               </button>
             </div> 
