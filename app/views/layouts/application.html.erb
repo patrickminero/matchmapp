@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Matchmapp</title>
+    <title>MatchMapp | Find bars screening matches near you</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +9,11 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="icon" href="https://www.freefavicon.com/freefavicons/sports/basketball-152-184778.png" sizes="16x16 32x32" type="image/png">
+    <link rel="icon" href="https://res.cloudinary.com/dliczkabg/image/upload/v1608195171/basketball-152-184778_k1evey.webp" sizes="16x16 32x32" type="image/png">
+    <meta property="og:title" content="MatchMapp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.matchmapp.live/" />
+    <meta property="og:image" content="https://res.cloudinary.com/dliczkabg/image/upload/c_limit,h_360,w_1200/v1608196420/sports-bar-in-saigon-banner.jpg.1758x854_q85_crop_w86yzv.jpg" />
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 

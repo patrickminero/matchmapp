@@ -29,8 +29,6 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  
-
   def dashboard
     @bookings = Booking.all.order(:created_at)
     authorize @bookings
@@ -42,12 +40,14 @@ class BookingsController < ApplicationController
     @booking.save
     flash[:notice] = "You accepted the booking...!"
     redirect_to dashboard_path
+    authorize @booking
   end
 
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
     redirect_to dashboard_path
+    authorize @booking
   end
 
   private
