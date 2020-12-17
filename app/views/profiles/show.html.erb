@@ -31,25 +31,11 @@
             <div class="bar-card my-4">
               <%= cl_image_tag(booking.bar.photos.first.key ) %>
               <div class="bar-card-infos">
-                <h2 class="mt-2"><%= booking.bar.name  %></h2>
-                <p>0.2 km away</p>
+                <h2 class=""><%= booking.bar.name  %></h2>
                 <div>
-                  <% if booking.bar.rating == 0 %>
-                    <p>Not rated yet</p>
-                  <% else %>
-                    <p class="my-1"><% booking.bar.rating.times do %><i class="fas fa-star text-primary"></i><% end %></p>
-                  <% end %>
-                </div>
-                <div>
-                  <% if booking.bar.many_spaces? %>
-                    <p><i class="fas fa-check-circle text-success"></i> Many spaces available</p>
-                  <% elsif booking.bar.few_spaces? %>
-                    <p><i class="fas fa-exclamation-circle text-warning"></i> Few spaces available</p>
-                  <% elsif booking.bar.no_spaces? %>
-                    <p class="font-weight-bold"><i class="fas fa-ban text-danger"></i> No spaces available</p>
-                  <% end %>
-                </div>
-                <div class="bar-category my-2"><%= booking.bar.category %></div>
+                  <span class="date "><%= booking.date.strftime("%a %b %d, %Y") %></span>
+                  <span class="date "><%= booking.time.strftime("%H:%M") %></span>
+                </div>                
               </div>
             </div>
           <% end %>

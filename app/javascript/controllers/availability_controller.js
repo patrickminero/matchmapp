@@ -10,27 +10,31 @@ export default class extends Controller {
     this.user_has_voted = JSON.parse(localStorage.getItem('user_has_voted'));
     this.last_voted = JSON.parse(localStorage.getItem('last_voted'));
     this.button_pressed = JSON.parse(localStorage.getItem('button_pressed'))
-    console.log(this.button_pressed)
     this.reset_buttons(this.button_pressed);
   }
   
   reset_buttons(button){
-    console.log("few")
-    this.timer()
     if(button === 'many'){
       this.fewTarget.disabled = true;
       this.noneTarget.disabled = true;
+      this.fewiconeTarget.classList.remove("text-warning");
+      this.noneiconeTarget.classList.remove("text-danger");
     }else if(button === "few"){
       this.manyTarget.disabled = true;
       this.noneTarget.disabled = true;
-      console.log("success")
+      this.manyiconeTarget.classList.remove("text-success");
+      this.noneiconeTarget.classList.remove("text-danger");
     }else if(button === 'none'){
       this.fewTarget.disabled = true;  
       this.manyTarget.disabled = true;
+      this.manyiconeTarget.classList.remove("text-success");
+      this.fewiconeTarget.classList.remove("text-warning");
     }
+    this.timer()
   }
 
   timer(){
+    console.log( 'something', Date.now() > (this.last_voted + 120000))  
     if(Date.now() > (this.last_voted + 120000)){
       this.fewTarget.disabled = false;
       this.noneTarget.disabled = false;
@@ -38,9 +42,7 @@ export default class extends Controller {
       this.manyiconeTarget.classList.add("text-success");
       this.noneiconeTarget.classList.add("text-danger");
       this.fewiconeTarget.classList.add("text-warning");
-      console.log("condition is true")
     }
-    console.log( Date.now() > (this.last_voted + 120000))  
   }
 
 
@@ -68,7 +70,6 @@ export default class extends Controller {
       this.fewiconeTarget.classList.remove("text-warning");
       this.noneiconeTarget.classList.remove("text-danger");
       this.voted('many')
-      console.log(this.last_voted)
      })
   }
 

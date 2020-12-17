@@ -1,11 +1,18 @@
-<div class="dark-background-bars" data-controller="show-map">
+<div class="index-background-match" data-controller="show-map">
   <div data-controller="map-toggler" class="py-5">
     <div class="container px-3">
       <h2>Bars screening your game</h2>
     </div>
-    
-    <div class="text-center" data-action="click->map-toggler#toggle" id="toggleButton">
-      <p data-map-toggler-target="toggleButton" data-action="click->show-map#initMapbox" class="btn btn-primary text-center mt-1">View map<i class="fas fa-map-marked-alt ml-2"></i></p>
+
+    <div class="container">
+      <div class="container">
+        <div class="text-right" data-action="click->map-toggler#toggle" id="toggleButton">
+          <p data-map-toggler-target="toggleButton" data-action="click->show-map#initMapbox" class="btn btn-primary text-center mt-1">
+            View map
+            <i class="fas fa-map-marked-alt ml-2"></i>
+          </p>
+        </div>
+      </div>
     </div>
     
     <div class="container">
@@ -44,6 +51,7 @@
         <% end %>
       </div>
     </div>
+
     <div class="bar-div transition" id="map-container" data-map-toggler-target="mapView">
       <div id="map" data-show-map-target="map"
         style="width: 100vw; height: 600px;"
