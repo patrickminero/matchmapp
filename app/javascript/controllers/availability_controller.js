@@ -34,8 +34,7 @@ export default class extends Controller {
   }
 
   timer(){
-    console.log( 'something', Date.now() > (this.last_voted + 120000))  
-    if(Date.now() > (this.last_voted + 120000)){
+    if(Date.now() > (this.last_voted + 900000)){
       this.fewTarget.disabled = false;
       this.noneTarget.disabled = false;
       this.manyTarget.disabled = false;
