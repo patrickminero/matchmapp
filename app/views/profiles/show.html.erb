@@ -3,7 +3,7 @@
 <%= cl_image_tag @profile.photo_url , {class: "avatar-large", alt: "avatar-large"} %>
 </div>  
 <div class="container_profile" data-controller="profile">
-  <div class="d-flex justify-content-center mt-4">
+  <div class="d-flex justify-content-center">
     <button class="button_profile border active_tab" data-profile-target="profileButton" data-action="click->profile#showProfile">Profile</button> 
     <button class="button_bookings border" data-profile-target="bookingButton" data-action="click->profile#showBooking" >My Bookings</button> 
   </div>
