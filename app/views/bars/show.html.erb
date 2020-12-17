@@ -101,7 +101,7 @@
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
 
-  <div class="container-fix-position">
+  <div class="container-fix-position mt-3">
     <%= link_to 'Get directions ', "https://www.google.com/maps/dir/#{session[:latitude]},#{session[:longitude]}/#{@bar.latitude},#{@bar.longitude}", target: "_blank", class:"btn btn-primary rounded mb-2 col text-center"  %>
     <%= link_to "Book a seat", new_bar_booking_path(@bar), class:"btn btn-primary rounded mt-2 col text-center"%>
 
