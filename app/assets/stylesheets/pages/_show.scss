@@ -6,6 +6,7 @@
 
 .dark-background-bars {
   background-size: cover;
+  min-height: calc(100vh - 56px);
   background-position: center;
   background-image: url(https://www.splitshire.com/wp-content/uploads/2015/03/SplitShire-8098-1800x1200.jpg);
 }

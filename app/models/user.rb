@@ -11,6 +11,10 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
 
+  def name
+    self.profile.name.nil? ? 'Zinedine Zidane' : self.profile.name
+  end
+
   def create_profile
     @profile = Profile.new
     @user = User.last
