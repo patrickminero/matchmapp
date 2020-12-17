@@ -1,14 +1,16 @@
-<div class="container chat-container index-background-match">
-  <h4 class="pt-3 chat-title"><%= @chatroom.name %></h4>
-  <div id="messages" class="receiver chat-messages" data-chatroom-id="<%= @chatroom.id %>" data-current-user-id="<%= current_user.id %>">
+<div class="container chat-container">
+  <h5 class="pt-3 chat-title"><%= @chatroom.name %></h5>
+  <div id="messages" class="receiver chat-messages pt-5" data-chatroom-id="<%= @chatroom.id %>" data-current-user-id="<%= current_user.id %>">
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
   </div>
-  <div class="chat-form">
+  <div class="chat-form pt-3">
     <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Message #{@chatroom.name}" %>
-      <%= f.submit "Send", class:"btn btn-flat col text-center w-25" %>
+      <%= f.input :content, as: :text, label: false, placeholder: "Message #{@chatroom.name}" %>
+      <button type="submit">
+        <i class="fas fa-chevron-circle-right"></i>
+      </button>
     <% end %>
   </div>
 </div>
