@@ -35,7 +35,7 @@
   </div>
   
   <%= render "matches/match_card", match: @match %>
-  <div class="container">
+  <div class="container pb-5">
     <h5 class="pt-2"><strong>Booked for:</strong> <%= pluralize @booking.number_of_people, "person" %></h5>
     <h5 class="pt-2"><strong>Date:</strong> <%= @booking.date.strftime("%d %b %Y") %> at <%= @booking.time.strftime("%-l:%M %p") %> </h5>
   </div>
