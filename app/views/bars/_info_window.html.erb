@@ -3,7 +3,7 @@
   <div class="bar-card-infos py-1 px-2">
       <h2 class="mt-2"><%= bar.name  %></h2>
       <p><%= bar.distance_to([session[:latitude].to_f, session[:longitude].to_f]).ceil(2) %> km away</p>
-      <div class="d-flex align-items-start">
+      <div class="d-flex align-items-center">
         <% if bar.availability == 'Many spaces' %>
           <i class="fas fa-check-circle text-success mr-2" id="many"></i>
           <p class="text-center">Available</p>
