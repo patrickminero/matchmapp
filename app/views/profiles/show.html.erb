@@ -15,7 +15,7 @@
     <% if @profile.name.nil? %>
       <p class="text-center "><i class="fas fa-running"></i> Welcome to your profile page</p>
     <% else %>
-      <p class=""><i class="fas fa-running"></i>  Welcome <strong><%= @profile.name.capitalize %></strong> to your profile page</p>
+      <p class=""><i class="fas fa-running"></i>  Welcome to your profile page <strong><%= @profile.name.capitalize %></strong></p>
       <p class=""><i class="fas fa-heart"></i>  We heard your favourite team is <strong><%= @profile.favourite_team %></strong></p>
       <p class=""><i class="fas fa-medal"></i>  <strong><%= @profile.favourite_sport %></strong></p>
       <p class="">" <%= @profile.description %> "</p>
@@ -23,10 +23,10 @@
   </div>
   <div class="information py-3 px-3 d-none" data-profile-target="booking">
     <% if @profile.bookings.empty? %>
-      <p class="text-center">You don't have any upcomming booking</p>
+      <h3 class="text-center">You don't have any upcoming bookings</h3>
       <%= link_to  matches_path do%>
-      <p class="text-center">Click here to see our</p>
-      <p class="text-center"><i class="fas fa-medal"></i>  Upcomming Events  <i class="far fa-futbol"></i></p>
+      <h3 class="text-center">Click here to see our</h3>
+      <h3 class="text-center"><i class="fas fa-medal"></i>  Upcoming Events  <i class="far fa-futbol"></i></h3>
       <% end %>
     <% else %>
       <div class="" data-map-toggler-target="barView">

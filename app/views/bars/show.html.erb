@@ -30,10 +30,10 @@
                 <i class="fas fa-check-circle circle-size text-success mt-1 mr-2"  id="many"></i>
                 <p class="text-center mt-1"><em>Available</em></p>
               <% elsif @bar.availability == 'Few spaces' %>
-                <i class="fas fa-exclamation-circle text-warning mr-2"  id="few"></i>
+                <i class="fas fa-exclamation-circle circle-size text-warning mr-2"  id="few"></i>
                 <p class="text-center mt-1">Filling up</p>
               <% elsif @bar.availability == 'No spaces' %>
-                <i class="fas fa-ban text-danger mr-2"  id="none"></i>
+                <i class="fas fa-ban text-danger circle-size mr-2"  id="none"></i>
                 <p class="text-center mt-1">Full</p>
                <% end %>
             </div>

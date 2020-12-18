@@ -5,7 +5,9 @@
     <div class="bar-card my-4">
         <%= cl_image_tag( @bar.photos.first.key ) %>
         <div class="bar-card-infos">
-          <h2 class="mt-2"><%= @bar.name  %></h2>
+          <%= link_to bar_path(@bar) do%>
+            <h2 class="mt-2"><%= @bar.name  %></h2>
+          <% end %>
           <p>0.2 km away</p>
           <div>
             <% if @bar.rating == 0 %>
@@ -33,7 +35,6 @@
   <div class="container">
     <h5><strong>Your selected match: </strong></h5>
   </div>
-  
   <%= render "matches/match_card", match: @match %>
   <div class="container pb-5">
     <h5 class="pt-2"><strong>Booked for:</strong> <%= pluralize @booking.number_of_people, "person" %></h5>
